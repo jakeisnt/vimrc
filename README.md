@@ -52,3 +52,5 @@ and some extra plugins:
       nodePackages.prettier
       nodePackages.eslint_d
       nodePackages.diagnostic-languageserver
+
+lots of progress was made switching to fennel. pick that stuff up here: https://github.com/jakeisnt/nix-cfg/pull/170
