@@ -1,6 +1,9 @@
 # vimrc
 (neo)vim config
 
+Please note that this config was used frequently and has soom good ideas, but hasn't been updated recently; Emacs provides a development environment more conducive to my current interests and work than Vim does, and maintaining two text editors at once has become too much effort for me. 
+
+
 packages i had (from nix): to be added to some vim plugin system:
 
             vim-polyglot
