@@ -11,9 +11,10 @@ return require('packer').startup(function(use)
   use 'nvim-treesitter/nvim-treesitter-textobjects'
   -- refactoring utils for treesitter
   use 'nvim-treesitter/nvim-treesitter-refactor'
-
-  -- js/ts specific language server stuff
- use 'jose-elias-alvarez/nvim-lsp-ts-utils'
+  -- change comment string based on what's under cursor
+  use 'JoosepAlviste/nvim-ts-context-commentstring'
+  -- auto close and auto rename html tags
+ use 'windwp/nvim-ts-autotag'
 
   -- comments for files
   use { 'terrortylor/nvim-comment' }
@@ -22,6 +23,10 @@ return require('packer').startup(function(use)
   use 'neovim/nvim-lspconfig'
   -- advanced rust tooling for nvim
   use { 'simrat39/rust-tools.nvim', requires = 'neovim/nvim-lspconfig' }
+  -- js/ts specific language server stuff
+ use { 'jose-elias-alvarez/nvim-lsp-ts-utils', requires = { 'neovim/nvim-lspconfig', 'nvim-lua/plenary.nvim' }}
+ -- sideload in lsp configurations from other tools
+ use  'jose-elias-alvarez/null-ls.nvim'
 
   -- direnv plugin for local environments
   use 'direnv/direnv.vim'

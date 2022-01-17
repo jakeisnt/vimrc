@@ -56,9 +56,6 @@ require'nvim_comment'.setup{
   comment_empty = false, -- don't comment empty lines
 }
 
--- set up rust tools, use coq for lsp
-require'rust-tools'.setup(require'coq'.lsp_ensure_capabilities({}))
-
 -- highlight color names inline
 vim.opt.termguicolors = true
 require'colorizer'.setup({
@@ -89,33 +86,6 @@ require'lualine'.setup {
   },
 }
 
-require'nvim-treesitter.configs'.setup {
-  highlight = {enable = true},
-  ensure_installed = 'maintained',
-  indent = {enable = true},
-  autopairs = {enable = true},
-  rainbow = {enable = true},
-  autotag = {enable = true},
-  context_commentstring = {enable = true},
-  -- TODO keybindings
-  refactor = {
-    highlight_definitions = { enable = true },
-    highlight_current_scope = { enable = true },
-    navigation = {
-      enable = true,
-      keymaps = {
-        goto_definition = "gd",
-        list_definitions = "gD",
-      },
-    },
-    smart_rename = {
-      enable = true,
-      keymaps = {
-        smart_rename = "grr",
-      },
-    },
-  },
-}
 
 require'neogit'.setup {
     disable_commit_confirmation = true,
@@ -128,4 +98,40 @@ require'neogit'.setup {
             ["<CR>"] = "DiffviewOpen"
         }
     }
+}
+
+-- language server things / nvim-lsp things
+-- set up rust tools, use coq for lsp
+require'rust-tools'.setup(require'coq'.lsp_ensure_capabilities({}))
+
+-- require'lspconfig'.setup()
+local null_ls = require'null-ls'
+null_ls.setup{
+    sources = {
+        null_ls.builtins.diagnostics.eslint, -- eslint or eslint_d
+        null_ls.builtins.code_actions.eslint, -- eslint or eslint_d
+        null_ls.builtins.formatting.prettier -- prettier, eslint, eslint_d, or prettierd
+    },
+}
+
+-- treesitter
+require'nvim-treesitter.configs'.setup {
+  highlight = {enable = true},
+  ensure_installed = 'maintained',
+  indent = {enable = true},
+  autopairs = {enable = true},
+  rainbow = {enable = true},
+  autotag = {enable = true},
+  context_commentstring = {enable = true},
+  refactor = {
+    highlight_definitions = { enable = true },
+    -- highlight_current_scope = { enable = true },
+    navigation = {
+      enable = true,
+      keymaps = {
+        goto_definition = "gd",
+        list_definitions = "gD",
+      },
+    },
+  },
 }
