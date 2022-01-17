@@ -1,3 +1,5 @@
+require'plugins'
+
 local function disable_default_plugins()
   vim.g.loaded_gzip = 1
   vim.g.loaded_tar = 1
@@ -25,5 +27,17 @@ require'core.options'
 require'core.keymaps'
 require'core.autocmds'
 
-vim.cmd [[runtime plugin/direnv.vim]]
-require'plugin'
+vim.cmd[[runtime plugin/direnv.vim]]
+
+require'nord'.set()
+
+require'rust-tools'.setup {}
+require'lualine'.setup {
+  options = {
+    theme = 'nord',
+    icons_enabled = true,
+    extensions = { 'nvim-tree' },
+    section_separators = '',
+    component_separators = '',
+  },
+}
