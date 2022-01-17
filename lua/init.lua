@@ -76,8 +76,8 @@ require'colorizer'.setup({
     mode     = 'background';  -- Set the display mode. background / foreground
   })
 
-require'nvim-autopairs'.setup{}
-require'trouble'.setup{}
+require'nvim-autopairs'.setup {}
+require'trouble'.setup {}
 require'lualine'.setup {
   options = {
     theme = 'nord',
@@ -118,6 +118,8 @@ null_ls.setup{
     null_ls.builtins.formatting.prettier -- prettier, eslint, eslint_d, or prettierd
   },
 }
+
+
 
 -- treesitter
 require'nvim-treesitter.configs'.setup {

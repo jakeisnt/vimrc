@@ -28,6 +28,7 @@ return require('packer').startup(function(use)
  -- sideload in lsp configurations from other tools
  use  'jose-elias-alvarez/null-ls.nvim'
 
+
   -- direnv plugin for local environments
   use 'direnv/direnv.vim'
 
