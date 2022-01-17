@@ -12,6 +12,9 @@ return require('packer').startup(function(use)
   -- refactoring utils for treesitter
   use 'nvim-treesitter/nvim-treesitter-refactor'
 
+  -- js/ts specific language server stuff
+ use 'jose-elias-alvarez/nvim-lsp-ts-utils'
+
   -- comments for files
   use { 'terrortylor/nvim-comment' }
 
