@@ -26,12 +26,19 @@ require'core.utils'
 require'core.options'
 require'core.keymaps'
 require'core.autocmds'
-
 vim.cmd[[runtime plugin/direnv.vim]]
 
 require'nord'.set()
+require'telescope'.setup {
+  extensions = {
+    ["ui-select"] = { require("telescope.themes").get_dropdown { } }
+  }
+}
+require('telescope').load_extension('ui-select')
+
 require'rust-tools'.setup{}
 require'nvim-autopairs'.setup{}
+require'trouble'.setup{}
 require'lualine'.setup {
   options = {
     theme = 'nord',

@@ -8,7 +8,7 @@ return require('packer').startup(function(use)
   -- My plugins here
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
   use 'neovim/nvim-lspconfig'
-  use 'simrat39/rust-tools.nvim'
+  use { 'simrat39/rust-tools.nvim', requires = 'neovim/nvim-lspconfig' }
 
   use 'direnv/direnv.vim'
   use 'Olical/conjure'
@@ -24,7 +24,12 @@ return require('packer').startup(function(use)
 
   use 'hrsh7th/nvim-cmp'
 
-  use { 'nvim-telescope/telescope.nvim', requires = {{ 'nvim-lua/plenary.nvim' }}}
+  use { 'nvim-telescope/telescope.nvim', requires = 'nvim-lua/plenary.nvim' }
+
+  use { 'folke/trouble.nvim', requires = 'kyazdani42/nvim-web-devicons' }
+
+  -- let vim ui select things use the telescope picker
+  use 'nvim-telescope/telescope-ui-select.nvim'
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
