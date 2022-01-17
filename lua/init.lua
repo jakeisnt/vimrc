@@ -37,15 +37,25 @@ require'telescope'.setup {
     ["ui-select"] = { require("telescope.themes").get_dropdown { } }
   }
 }
+
 require'telescope'.load_extension'ui-select'
 
-require'gitsigns'.setup{}
+-- change default git signs
+require'gitsigns'.setup {
+  signs = {
+    add = {hl = 'GitSignsAdd', text = '▎'},
+    change = {hl = 'GitSignsChange', text = '▎'},
+    delete = {hl = 'GitSignsDelete', text = '契'},
+    topdelete = {hl = 'GitSignsDelete', text = '契'},
+    changedelete = {hl = 'GitSignsChange', text = '▎'},
+  },
+}
 
 -- set up rust tools, use coq for lsp
 require'rust-tools'.setup(require'coq'.lsp_ensure_capabilities({}))
 
-vim.opt.termguicolors = true
 -- highlight color names inline
+vim.opt.termguicolors = true
 require'colorizer'.setup({
   'css';
   'javascript';
@@ -101,4 +111,17 @@ require'nvim-treesitter.configs'.setup {
       },
     },
   },
+}
+
+require'neogit'.setup {
+    disable_commit_confirmation = true,
+    integrations = {
+        diffview = true
+    },
+
+    mappings = {
+        status = {
+            ["<CR>"] = "DiffviewOpen"
+        }
+    }
 }
