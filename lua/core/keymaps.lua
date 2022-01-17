@@ -9,6 +9,8 @@ vim.g.maplocalleader = ' '
 nmap('<leader>', '<Nop>')
 xmap('<leader>', '<Nop>')
 
+nmap('<leader>ot', '<cmd>bo term<CR>')
+
 -- Normal
 nmap('Q', '<Nop>')
 nmap('q:', '<Nop>')
@@ -120,7 +122,6 @@ nmap('<leader>gl', ':Neogit log<cr>')
 nmap('<leader>gp', ':Neogit push<cr>')
 nmap('<leader>gb', ':Neogit push<cr>')
 nmap('<space>gc', ':Neogit commit<cr>')
-
 nmap('<leader>gd', ':DiffviewOpen<cr>')
 nmap('<leader>gD', ':DiffviewOpen main<cr>')
 
@@ -133,22 +134,6 @@ nmap('<space>fo', '<cmd>Telescope oldfiles<CR>')
 nmap('<space>fl', '<cmd>Telescope live_grep<CR>')
 nmap('<space>fd', '<cmd>lua require("plugin.telescope").find_dotfiles()<CR>')
 nmap('<space>fk', ':Telescope file_browser hidden=true<cr>')
-
--- Nix
-nmap('<space>hrn', '<cmd>!hey rebuild<CR>')
-
-
--- Vim surround ( noremap need to be false to work)
--- TODO what do these do??
-nmap('ds', '<Plug>Dsurround', {noremap = false})
-nmap('cs', '<Plug>Csurround', {noremap = false})
-nmap('cS', '<Plug>CSurround', {noremap = false})
-nmap('s', '<Plug>Ysurround', {noremap = false})
-nmap('S', '<Plug>YSurround', {noremap = false})
-nmap('ss', '<Plug>Yssurround', {noremap = false})
-nmap('SS', '<Plug>YSsurround', {noremap = false})
-xmap('s', '<Plug>VSurround', {noremap = false})
-xmap('S', '<Plug>VgSurround', {noremap = false})
 
 vim.cmd [[command! WipeReg for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor]]
 

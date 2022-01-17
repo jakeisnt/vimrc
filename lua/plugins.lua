@@ -6,7 +6,7 @@ end
 
 return require('packer').startup(function(use)
   -- My plugins here
-  use 'nvim-treesitter/nvim-treesitter'
+  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
   use 'neovim/nvim-lspconfig'
   use 'simrat39/rust-tools.nvim'
 
@@ -20,10 +20,11 @@ return require('packer').startup(function(use)
 
   use 'shaunsingh/nord.nvim'
 
+  use 'windwp/nvim-autopairs'
+
+  use 'hrsh7th/nvim-cmp'
+
   use { 'nvim-telescope/telescope.nvim', requires = {{ 'nvim-lua/plenary.nvim' }}}
-
-
-  -- use 'foo2/bar2.nvim'
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

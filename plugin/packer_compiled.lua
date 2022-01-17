@@ -79,6 +79,11 @@ _G.packer_plugins = {
     path = "/home/jake/.local/share/nvim/site/pack/packer/start/direnv.vim",
     url = "https://github.com/direnv/direnv.vim"
   },
+  ["lightspeed.nvim"] = {
+    loaded = true,
+    path = "/home/jake/.local/share/nvim/site/pack/packer/start/lightspeed.nvim",
+    url = "https://github.com/ggandor/lightspeed.nvim"
+  },
   ["lualine.nvim"] = {
     loaded = true,
     path = "/home/jake/.local/share/nvim/site/pack/packer/start/lualine.nvim",
@@ -88,6 +93,21 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/jake/.local/share/nvim/site/pack/packer/start/neogit",
     url = "https://github.com/TimUntersberger/neogit"
+  },
+  ["nord.nvim"] = {
+    loaded = true,
+    path = "/home/jake/.local/share/nvim/site/pack/packer/start/nord.nvim",
+    url = "https://github.com/shaunsingh/nord.nvim"
+  },
+  ["nvim-autopairs"] = {
+    loaded = true,
+    path = "/home/jake/.local/share/nvim/site/pack/packer/start/nvim-autopairs",
+    url = "https://github.com/windwp/nvim-autopairs"
+  },
+  ["nvim-cmp"] = {
+    loaded = true,
+    path = "/home/jake/.local/share/nvim/site/pack/packer/start/nvim-cmp",
+    url = "https://github.com/hrsh7th/nvim-cmp"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
