@@ -12,6 +12,9 @@ return require('packer').startup(function(use)
   -- refactoring utils for treesitter
   use 'nvim-treesitter/nvim-treesitter-refactor'
 
+  -- comments for files
+  use { 'terrortylor/nvim-comment' }
+
   -- nvim lsp default configs
   use 'neovim/nvim-lspconfig'
   -- advanced rust tooling for nvim

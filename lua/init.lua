@@ -51,6 +51,11 @@ require'gitsigns'.setup {
   },
 }
 
+-- toggle comments for things
+require'nvim_comment'.setup{
+  comment_empty = false, -- don't comment empty lines
+}
+
 -- set up rust tools, use coq for lsp
 require'rust-tools'.setup(require'coq'.lsp_ensure_capabilities({}))
 
@@ -101,7 +106,6 @@ require'nvim-treesitter.configs'.setup {
       keymaps = {
         goto_definition = "gd",
         list_definitions = "gD",
-        list_definitions_toc = "gO",
       },
     },
     smart_rename = {
