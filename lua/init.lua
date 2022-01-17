@@ -88,16 +88,16 @@ require'lualine'.setup {
 
 
 require'neogit'.setup {
-    disable_commit_confirmation = true,
-    integrations = {
-        diffview = true
-    },
+  disable_commit_confirmation = true,
+  integrations = {
+    diffview = true
+  },
 
-    mappings = {
-        status = {
-            ["<CR>"] = "DiffviewOpen"
-        }
+  mappings = {
+    status = {
+      ["<CR>"] = "DiffviewOpen"
     }
+  }
 }
 
 -- language server things / nvim-lsp things
@@ -107,11 +107,11 @@ require'rust-tools'.setup(require'coq'.lsp_ensure_capabilities({}))
 -- require'lspconfig'.setup()
 local null_ls = require'null-ls'
 null_ls.setup{
-    sources = {
-        null_ls.builtins.diagnostics.eslint, -- eslint or eslint_d
-        null_ls.builtins.code_actions.eslint, -- eslint or eslint_d
-        null_ls.builtins.formatting.prettier -- prettier, eslint, eslint_d, or prettierd
-    },
+  sources = {
+    null_ls.builtins.diagnostics.eslint, -- eslint or eslint_d
+    null_ls.builtins.code_actions.eslint, -- eslint or eslint_d
+    null_ls.builtins.formatting.prettier -- prettier, eslint, eslint_d, or prettierd
+  },
 }
 
 -- treesitter
