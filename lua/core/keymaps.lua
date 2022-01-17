@@ -10,6 +10,7 @@ nmap('<leader>', '<Nop>')
 xmap('<leader>', '<Nop>')
 
 nmap('<leader>ot', '<cmd>bo term<CR>')
+nmap('<leader>.', '<cmd>CHADopen<cr>')
 
 -- Normal
 nmap('Q', '<Nop>')
@@ -75,7 +76,7 @@ xmap('<leader>wk', '<C-W>k')
 xmap('<leader>wl', '<C-W>l')
 xmap('<leader>ws', ':sp<CR>')
 xmap('<leader>wv', ':vsp<CR>')
-xmap('<leader>wc', '<C-W>c')
+xmap('<leader>wc', ':q<cr>')
 xmap('<space>w=', '<cmd>wincmd =<CR>')
 
 -- Tabs

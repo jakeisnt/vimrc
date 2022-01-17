@@ -28,15 +28,40 @@ require'core.keymaps'
 require'core.autocmds'
 vim.cmd[[runtime plugin/direnv.vim]]
 
+-- set nord theme
 require'nord'.set()
+
+-- telescope; defer ui select ot telescope
 require'telescope'.setup {
   extensions = {
     ["ui-select"] = { require("telescope.themes").get_dropdown { } }
   }
 }
-require('telescope').load_extension('ui-select')
+require'telescope'.load_extension'ui-select'
 
-require'rust-tools'.setup{}
+require'gitsigns'.setup{}
+
+-- set up rust tools, use coq for lsp
+require'rust-tools'.setup(require'coq'.lsp_ensure_capabilities({}))
+
+vim.opt.termguicolors = true
+-- highlight color names inline
+require'colorizer'.setup({
+  'css';
+  'javascript';
+  html = { mode = 'background' };
+}, {
+    RGB = true, -- #RGB hex codes
+    RRGGBB = true, -- #RRGGBB hex codes
+    names = true, -- "Name" codes like Blue
+    RRGGBBAA = true, -- #RRGGBBAA hex codes
+    rgb_fn = true, -- CSS rgb() and rgba() functions
+    hsl_fn = true, -- CSS hsl() and hsla() functions
+    css = true, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
+    css_fn = true, -- Enable all CSS *functions*: rgb_fn, hsl_fn
+    mode     = 'background';  -- Set the display mode. background / foreground
+  })
+
 require'nvim-autopairs'.setup{}
 require'trouble'.setup{}
 require'lualine'.setup {
@@ -57,51 +82,23 @@ require'nvim-treesitter.configs'.setup {
   rainbow = {enable = true},
   autotag = {enable = true},
   context_commentstring = {enable = true},
+  -- TODO keybindings
   refactor = {
-    keymaps = {
-      smart_rename = "grr",
-    },
     highlight_definitions = { enable = true },
     highlight_current_scope = { enable = true },
+    navigation = {
+      enable = true,
+      keymaps = {
+        goto_definition = "gd",
+        list_definitions = "gD",
+        list_definitions_toc = "gO",
+      },
+    },
     smart_rename = {
       enable = true,
+      keymaps = {
+        smart_rename = "grr",
+      },
     },
   },
-  textobjects = {
-    lsp_interop = {
-      enable = true,
-      border = 'none',
-      peek_definition_code = {
-        ["df"] = "@function.outer",
-        ["dF"] = "@class.outer",
-      },
-    },
-    move = {
-      enable = true,
-      set_jumps = true,
-    },
-    swap = {
-      enable = true,
-      swap_next = {
-        ["<leader>a"] = "@parameter.inner",
-      },
-      swap_previous = {
-        ["<leader>A"] = "@parameter.inner",
-      },
-    },
-    select = {
-      enable = true,
-
-      -- auto jump to next textobject
-      lookahead = true,
-
-      keymaps = {
-        -- You can use the capture groups defined in textobjects.scm
-        ["af"] = "@function.outer",
-        ["if"] = "@function.inner",
-        ["ac"] = "@class.outer",
-        ["ic"] = "@class.inner",
-      }
-    }
-  }
 }
