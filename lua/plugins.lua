@@ -55,6 +55,7 @@ return require('packer').startup(function(use)
   -- change comment string based on what's under cursor
   use { 'JoosepAlviste/nvim-ts-context-commentstring', commit = commit.nvim_ts_context_commentstring, event = "BufReadPost" }
 
+
     -- lua dev
   use { "folke/lua-dev.nvim", commit = commit.lua_dev }
   -- auto close and auto rename html tags
@@ -103,6 +104,8 @@ return require('packer').startup(function(use)
 
   -- show code colors in terminal
   use { 'norcalli/nvim-colorizer.lua', commit = "36c610a9717cc9ec426a07c8e6bf3b3abcb139d6" }
+
+  use { 'akinsho/toggleterm.nvim', commit = commit.toggleterm, config = function() require'toggleterm'.setup{} end }
 
   -- status line
   use { 'nvim-lualine/lualine.nvim', commit = commit.lualine }

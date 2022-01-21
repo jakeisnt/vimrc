@@ -9,7 +9,7 @@ vim.g.maplocalleader = ' '
 nmap('<leader>', '<Nop>')
 xmap('<leader>', '<Nop>')
 
-nmap('<leader>ot', '<cmd>bo term<CR>')
+nmap('<leader>ot', '<cmd>ToggleTerm<CR>')
 nmap('<leader>.', '<cmd>NvimTreeToggle<cr>')
 
 -- Normal
