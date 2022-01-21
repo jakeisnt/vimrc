@@ -60,6 +60,15 @@ return require('packer').startup(function(use)
   -- auto close and auto rename html tags
  -- use 'windwp/nvim-ts-autotag'
 
+  -- super project integration
+  use {
+    "ahmedkhalf/project.nvim",
+    commit = commit.project,
+    config = function()
+        require'project_nvim'.setup{}
+    end
+  }
+
   -- comments for files
   use {
     "numToStr/Comment.nvim",
@@ -112,8 +121,8 @@ return require('packer').startup(function(use)
       requires = {
         'kyazdani42/nvim-web-devicons', -- optional, for file icon
       },
-      config = function() require'nvim-tree'.setup {} end
-  }
+      config = function() require'nvim-tree'.setup {update_cwd = true, update_focused_file = { enable = true, update_cwd = true }} end
+}
 
   -- autocomplete
   use { 'ms-jpq/coq_nvim', commit = commit.coq_nvim }

@@ -1,7 +1,7 @@
 local actions = require 'telescope.actions'
 local sorters = require 'telescope.sorters'
 
-require('telescope').setup {
+require'telescope'.setup {
   defaults = {
     layout_strategy = 'horizontal',
     prompt_prefix = '❯ ',

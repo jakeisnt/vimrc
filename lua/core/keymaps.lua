@@ -129,6 +129,7 @@ nmap('<leader>gD', ':DiffviewOpen main<cr>')
 -- Telescope
 nmap('<space>ff', '<cmd>lua require("plugin.telescope").project_files()<CR>')
 nmap('<space>fb', '<cmd>Telescope buffers<CR>')
+nmap('<space>pp', '<cmd>Telescope projects<CR>')
 nmap('<space>,', '<cmd>Telescope buffers<CR>')
 nmap('<space>fh', '<cmd>Telescope help_tags<CR>')
 nmap('<space>fo', '<cmd>Telescope oldfiles<CR>')
