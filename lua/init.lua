@@ -130,8 +130,6 @@ require'nvim-treesitter.configs'.setup {
   autotag = {enable = true},
   context_commentstring = {enable = true},
   refactor = {
-    highlight_definitions = { enable = true },
-    highlight_current_scope = { enable = true },
     navigation = {
       enable = true,
       keymaps = {
