@@ -28,6 +28,7 @@ require'core.utils'
 require'core.options'
 require'core.keymaps'
 require'core.autocmds'
+
 vim.cmd[[runtime plugin/direnv.vim]]
 
 -- set nord theme
@@ -53,16 +54,12 @@ require'gitsigns'.setup {
   },
 }
 
--- toggle comments for things
-require'nvim_comment'.setup{
-  comment_empty = false, -- don't comment empty lines
-}
-
 -- highlight color names inline
 vim.opt.termguicolors = true
 require'colorizer'.setup({
   'css';
   'javascript';
+  'lua';
   html = { mode = 'background' };
 }, {
     RGB = true, -- #RGB hex codes
@@ -123,22 +120,22 @@ null_ls.setup{
 
 -- treesitter
 require'nvim-treesitter.configs'.setup {
-  highlight = {enable = true},
+  -- highlight = { enable = true },
   ensure_installed = 'maintained',
   indent = {enable = true},
   autopairs = {enable = true},
   rainbow = {enable = true},
   autotag = {enable = true},
-  context_commentstring = {enable = true},
-  refactor = {
-    highlight_definitions = { enable = true },
+  -- context_commentstring = {enable = true},
+--   refactor = {
+  --   highlight_definitions = { enable = true },
     -- highlight_current_scope = { enable = true },
-    navigation = {
-      enable = true,
-      keymaps = {
-        goto_definition = "gd",
-        list_definitions = "gD",
-      },
-    },
-  },
+  --   navigation = {
+  --     enable = true,
+   --    keymaps = {
+    --     goto_definition = "gd",
+     --    list_definitions = "gD",
+   --    },
+  --   },
+ --  },
 }
