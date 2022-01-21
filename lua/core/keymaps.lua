@@ -10,7 +10,7 @@ nmap('<leader>', '<Nop>')
 xmap('<leader>', '<Nop>')
 
 nmap('<leader>ot', '<cmd>bo term<CR>')
-nmap('<leader>.', '<cmd>CHADopen<cr>')
+nmap('<leader>.', '<cmd>NvimTreeToggle<cr>')
 
 -- Normal
 nmap('Q', '<Nop>')

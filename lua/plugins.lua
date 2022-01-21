@@ -44,6 +44,8 @@ local commit = {
 }
 
 return require('packer').startup(function(use)
+  -- should manage itself?
+  use { "wbthomason/packer.nvim", commit = commit.packer }
   -- better highlighting and code interaction
   use { 'nvim-treesitter/nvim-treesitter', commit = commit.nvim_treesitter, run = ':TSUpdate' }
   -- navigate code with respect to textobjects!
@@ -52,6 +54,9 @@ return require('packer').startup(function(use)
   -- use 'nvim-treesitter/nvim-treesitter-refactor'
   -- change comment string based on what's under cursor
   use { 'JoosepAlviste/nvim-ts-context-commentstring', commit = commit.nvim_ts_context_commentstring, event = "BufReadPost" }
+
+    -- lua dev
+  use { "folke/lua-dev.nvim", commit = commit.lua_dev }
   -- auto close and auto rename html tags
  -- use 'windwp/nvim-ts-autotag'
 
@@ -102,10 +107,18 @@ return require('packer').startup(function(use)
   -- autoparens
   use { 'windwp/nvim-autopairs', commit = commit.nvim_autopairs }
 
+  use {
+      'kyazdani42/nvim-tree.lua',
+      requires = {
+        'kyazdani42/nvim-web-devicons', -- optional, for file icon
+      },
+      config = function() require'nvim-tree'.setup {} end
+  }
+
   -- autocomplete
   use { 'ms-jpq/coq_nvim', commit = commit.coq_nvim }
   -- snippets
-  -- use 'ms-jpq/coq.artifacts' - not yet working
+  use { 'ms-jpq/coq.artifacts', commit = "3eaf9fba507dd01abcd4870221a636f0ecb8cde0" }
 
   -- file tree (defunct)
   -- use { 'ms-jpq/chadtree', run = 'python3 -m chadtree deps' }
