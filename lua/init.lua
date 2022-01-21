@@ -128,18 +128,18 @@ require'nvim-treesitter.configs'.setup {
   autopairs = {enable = true},
   rainbow = {enable = true},
   autotag = {enable = true},
-  -- context_commentstring = {enable = true},
---   refactor = {
-  --   highlight_definitions = { enable = true },
-    -- highlight_current_scope = { enable = true },
-  --   navigation = {
-  --     enable = true,
-   --    keymaps = {
-    --     goto_definition = "gd",
-     --    list_definitions = "gD",
-   --    },
-  --   },
- --  },
+  context_commentstring = {enable = true},
+  refactor = {
+    highlight_definitions = { enable = true },
+    highlight_current_scope = { enable = true },
+    navigation = {
+      enable = true,
+      keymaps = {
+        goto_definition = "gd",
+        list_definitions = "gD",
+      },
+    },
+  },
 }
 
 -- escape from toggleterm

@@ -51,7 +51,7 @@ return require('packer').startup(function(use)
   -- navigate code with respect to textobjects!
   -- use 'nvim-treesitter/nvim-treesitter-textobjects'
   -- refactoring utils for treesitter
-  -- use 'nvim-treesitter/nvim-treesitter-refactor'
+  use { 'nvim-treesitter/nvim-treesitter-refactor', commit = "7470880adf8b6fd20936aad33f24ce8fecdb6799" }
   -- change comment string based on what's under cursor
   use { 'JoosepAlviste/nvim-ts-context-commentstring', commit = commit.nvim_ts_context_commentstring, event = "BufReadPost" }
 
