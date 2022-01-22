@@ -114,7 +114,8 @@ return require('packer').startup(function(use)
   use 'ggandor/lightspeed.nvim'
 
   -- jake color theme
-  use 'jakeisnt/theme.nvim'
+  -- do not pin this - i maintain it : )
+  use 'jakeisnt/stilla.nvim'
 
   -- autoparens
   use { 'windwp/nvim-autopairs', commit = commit.nvim_autopairs }
