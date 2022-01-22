@@ -31,8 +31,8 @@ require'core.autocmds'
 
 vim.cmd[[runtime plugin/direnv.vim]]
 
--- set nord theme
-require'nord'.set()
+-- set my theme
+require'stilla'.set()
 
 -- telescope; defer ui select ot telescope
 require'telescope'.setup {
@@ -79,7 +79,7 @@ require'nvim-autopairs'.setup {}
 require'trouble'.setup {}
 require'lualine'.setup {
   options = {
-    theme = 'nord',
+    theme = 'stilla',
     icons_enabled = true,
     extensions = { 'nvim-tree' },
     section_separators = '',
