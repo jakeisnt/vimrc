@@ -69,7 +69,7 @@ require'colorizer'.setup({
     names = true, -- "Name" codes like Blue
     RRGGBBAA = true, -- #RRGGBBAA hex codes
     rgb_fn = true, -- CSS rgb() and rgba() functions
-    hsl_fn = true, -- CSS hsl() and hsla() functions
+    hsl_fn = true, -- CSS hs,l() and hsla() functions
     css = true, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
     css_fn = true, -- Enable all CSS *functions*: rgb_fn, hsl_fn
     mode     = 'background';  -- Set the display mode. background / foreground
@@ -83,7 +83,26 @@ require'lualine'.setup {
     icons_enabled = true,
     extensions = { 'nvim-tree' },
     section_separators = '',
+    -- component_separators = { left = '', right = ''},
+    -- section_separators = { left = '', right = ''},
     component_separators = '',
+    always_divide_middle = true,
+  },
+  sections = {
+    lualine_a = {'branch'},
+    lualine_b = {'diagnostics'},
+    lualine_c = {'filename'},
+    lualine_x = {},
+    lualine_y = {'filetype'},
+    lualine_z = {'location'}
+  },
+  inactive_sections = {
+    lualine_a = {'filename'},
+    lualine_b = {},
+    lualine_c = {},
+    lualine_x = {},
+    lualine_y = {},
+    lualine_z = {'filetype'}
   },
 }
 
