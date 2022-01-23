@@ -1,4 +1,4 @@
-require'plugins'
+require("plugins")
 
 local g = vim.g
 
@@ -24,130 +24,128 @@ local function disable_default_plugins()
 end
 
 disable_default_plugins()
-require'core.utils'
-require'core.options'
-require'core.keymaps'
-require'core.autocmds'
+require("core.utils")
+require("core.options")
+require("core.keymaps")
+require("core.autocmds")
 
-vim.cmd[[runtime plugin/direnv.vim]]
+vim.cmd([[runtime plugin/direnv.vim]])
 
 -- set my theme
-require'stilla'.set()
+require("stilla").set()
 
 -- telescope; defer ui select ot telescope
-require'telescope'.setup {
+require("telescope").setup({
   extensions = {
-    ["ui-select"] = { require("telescope.themes").get_dropdown { } }
-  }
-}
+    ["ui-select"] = { require("telescope.themes").get_dropdown({}) },
+  },
+})
 
-require'telescope'.load_extension'projects'
+require("telescope").load_extension("projects")
 
-require'telescope'.load_extension'ui-select'
+require("telescope").load_extension("ui-select")
 
 -- change default git signs
-require'gitsigns'.setup {
+require("gitsigns").setup({
   signs = {
-    add = {hl = 'GitSignsAdd', text = '▎'},
-    change = {hl = 'GitSignsChange', text = '▎'},
-    delete = {hl = 'GitSignsDelete', text = '契'},
-    topdelete = {hl = 'GitSignsDelete', text = '契'},
-    changedelete = {hl = 'GitSignsChange', text = '▎'},
+    add = { hl = "GitSignsAdd", text = "▎" },
+    change = { hl = "GitSignsChange", text = "▎" },
+    delete = { hl = "GitSignsDelete", text = "契" },
+    topdelete = { hl = "GitSignsDelete", text = "契" },
+    changedelete = { hl = "GitSignsChange", text = "▎" },
   },
-}
+})
 
 -- highlight color names inline
 vim.opt.termguicolors = true
-require'colorizer'.setup({
-  'css';
-  'javascript';
-  'lua';
-  html = { mode = 'background' };
+require("colorizer").setup({
+  "css",
+  "javascript",
+  "lua",
+  html = { mode = "background" },
 }, {
-    RGB = true, -- #RGB hex codes
-    RRGGBB = true, -- #RRGGBB hex codes
-    names = true, -- "Name" codes like Blue
-    RRGGBBAA = true, -- #RRGGBBAA hex codes
-    rgb_fn = true, -- CSS rgb() and rgba() functions
-    hsl_fn = true, -- CSS hs,l() and hsla() functions
-    css = true, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
-    css_fn = true, -- Enable all CSS *functions*: rgb_fn, hsl_fn
-    mode     = 'background';  -- Set the display mode. background / foreground
-  })
+  RGB = true, -- #RGB hex codes
+  RRGGBB = true, -- #RRGGBB hex codes
+  names = true, -- "Name" codes like Blue
+  RRGGBBAA = true, -- #RRGGBBAA hex codes
+  rgb_fn = true, -- CSS rgb() and rgba() functions
+  hsl_fn = true, -- CSS hs,l() and hsla() functions
+  css = true, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
+  css_fn = true, -- Enable all CSS *functions*: rgb_fn, hsl_fn
+  mode = "background", -- Set the display mode. background / foreground
+})
 
-require'nvim-autopairs'.setup {}
-require'trouble'.setup {}
-require'lualine'.setup {
+require("nvim-autopairs").setup({})
+require("trouble").setup({})
+require("lualine").setup({
   options = {
-    theme = 'stilla',
+    theme = "stilla",
     icons_enabled = true,
-    extensions = { 'nvim-tree' },
-    section_separators = '',
+    extensions = { "nvim-tree" },
+    section_separators = "",
     -- component_separators = { left = '', right = ''},
     -- section_separators = { left = '', right = ''},
-    component_separators = '',
+    component_separators = "",
     always_divide_middle = true,
   },
   sections = {
-    lualine_a = {'branch'},
-    lualine_b = {'diagnostics'},
-    lualine_c = {'filename'},
+    lualine_a = { "branch" },
+    lualine_b = { "diagnostics" },
+    lualine_c = { "filename" },
     lualine_x = {},
-    lualine_y = {'filetype'},
-    lualine_z = {'location'}
+    lualine_y = { "filetype" },
+    lualine_z = { "location" },
   },
   inactive_sections = {
-    lualine_a = {'filename'},
+    lualine_a = { "filename" },
     lualine_b = {},
     lualine_c = {},
     lualine_x = {},
     lualine_y = {},
-    lualine_z = {'filetype'}
+    lualine_z = { "filetype" },
   },
-}
+})
 
-
-require'neogit'.setup {
+require("neogit").setup({
   disable_commit_confirmation = true,
   integrations = {
-    diffview = true
+    diffview = true,
   },
 
   mappings = {
     status = {
-      ["<CR>"] = "DiffviewOpen"
-    }
-  }
-}
+      ["<CR>"] = "DiffviewOpen",
+    },
+  },
+})
 
 g.coq_settings = { auto_start = true }
 
 -- language server things / nvim-lsp things
 -- set up rust tools, use coq for lsp
-require'rust-tools'.setup(require'coq'.lsp_ensure_capabilities({}))
+require("rust-tools").setup(require("coq").lsp_ensure_capabilities({}))
 
-local null_ls = require'null-ls'
-null_ls.setup{
+local null_ls = require("null-ls")
+null_ls.setup({
   sources = {
     null_ls.builtins.diagnostics.eslint, -- eslint or eslint_d
     null_ls.builtins.code_actions.eslint, -- eslint or eslint_d
-    null_ls.builtins.formatting.eslint -- prettier, eslint, eslint_d, or prettierd
+    null_ls.builtins.formatting.eslint, -- prettier, eslint, eslint_d, or prettierd
   },
-}
+})
 
-local luadev = require'lua-dev'.setup{}
-require'lspconfig'.sumneko_lua.setup(luadev)
-
+local luadev = require("lua-dev").setup({})
+require("lspconfig").sumneko_lua.setup(luadev)
 
 -- treesitter
-require'nvim-treesitter.configs'.setup {
+require("nvim-treesitter.configs").setup({
   -- highlight = { enable = true },
-  ensure_installed = 'maintained',
-  indent = {enable = true},
-  autopairs = {enable = true},
-  rainbow = {enable = true},
-  autotag = {enable = true},
-  context_commentstring = {enable = true},
+  ensure_installed = "maintained",
+  indent = { enable = true },
+  autopairs = { enable = true },
+  rainbow = { enable = true },
+  autotag = { enable = true },
+  context_commentstring = { enable = true },
   refactor = {
     navigation = {
       enable = true,
@@ -157,13 +155,13 @@ require'nvim-treesitter.configs'.setup {
       },
     },
   },
-}
+})
 
 -- escape from toggleterm
 function _G.set_terminal_keymaps()
-  local opts = {noremap = true}
-  vim.api.nvim_buf_set_keymap(0, 't', '<esc>', [[<C-\><C-n>]], opts)
+  local opts = { noremap = true }
+  vim.api.nvim_buf_set_keymap(0, "t", "<esc>", [[<C-\><C-n>]], opts)
 end
 
 -- if you only want these mappings for toggle term use term://*toggleterm#* instead
-vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
+vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")

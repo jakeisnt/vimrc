@@ -1,7 +1,14 @@
 local fn = vim.fn
-local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 if fn.empty(fn.glob(install_path)) > 0 then
-  packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+  packer_bootstrap = fn.system({
+    "git",
+    "clone",
+    "--depth",
+    "1",
+    "https://github.com/wbthomason/packer.nvim",
+    install_path,
+  })
 end
 
 local commit = {
@@ -43,119 +50,149 @@ local commit = {
   coq_nvim = "0ab471648fd27943c49c28d7f22730ba0b14bdb8",
 }
 
-return require('packer').startup(function(use)
+return require("packer").startup(function(use)
   -- should manage itself?
-  use { "wbthomason/packer.nvim", commit = commit.packer }
+  use({ "wbthomason/packer.nvim", commit = commit.packer })
   -- better highlighting and code interaction
-  use { 'nvim-treesitter/nvim-treesitter', commit = commit.nvim_treesitter, run = ':TSUpdate' }
+  use({ "nvim-treesitter/nvim-treesitter", commit = commit.nvim_treesitter, run = ":TSUpdate" })
   -- navigate code with respect to textobjects!
   -- use 'nvim-treesitter/nvim-treesitter-textobjects'
   -- refactoring utils for treesitter
-  use { 'nvim-treesitter/nvim-treesitter-refactor', commit = "7470880adf8b6fd20936aad33f24ce8fecdb6799" }
+  use({
+    "nvim-treesitter/nvim-treesitter-refactor",
+    commit = "7470880adf8b6fd20936aad33f24ce8fecdb6799",
+  })
   -- change comment string based on what's under cursor
-  use { 'JoosepAlviste/nvim-ts-context-commentstring', commit = commit.nvim_ts_context_commentstring, event = "BufReadPost" }
+  use({
+    "JoosepAlviste/nvim-ts-context-commentstring",
+    commit = commit.nvim_ts_context_commentstring,
+    event = "BufReadPost",
+  })
 
-
-    -- lua dev
-  use { "folke/lua-dev.nvim", commit = commit.lua_dev }
+  -- lua dev
+  use({ "folke/lua-dev.nvim", commit = commit.lua_dev })
   -- auto close and auto rename html tags
- -- use 'windwp/nvim-ts-autotag'
+  -- use 'windwp/nvim-ts-autotag'
 
   -- super project integration
-  use {
+  use({
     "ahmedkhalf/project.nvim",
     commit = commit.project,
     config = function()
-        require'project_nvim'.setup{}
-    end
-  }
+      require("project_nvim").setup({})
+    end,
+  })
 
-use {
-    'nvim-orgmode/orgmode',
+  use({
+    "nvim-orgmode/orgmode",
     commit = "27c4083e29702c8b4fa5e314926ae054eb4c0dc2",
-config = function()
-        require('orgmode').setup{}
-    end
-}
+    config = function()
+      require("orgmode").setup({})
+    end,
+  })
 
   -- comments for files
-  use {
+  use({
     "numToStr/Comment.nvim",
     commit = commit.comment,
-    event = "BufRead" ,
+    event = "BufRead",
     config = function()
-        require'Comment'.setup()
-    end
-  }
+      require("Comment").setup()
+    end,
+  })
   -- nvim lsp default configs
-  use { 'neovim/nvim-lspconfig', commit = commit.nvim_lspconfig }
+  use({ "neovim/nvim-lspconfig", commit = commit.nvim_lspconfig })
   -- advanced rust tooling for nvim
-  use { 'simrat39/rust-tools.nvim', requires = 'neovim/nvim-lspconfig' }
+  use({ "simrat39/rust-tools.nvim", requires = "neovim/nvim-lspconfig" })
   -- js/ts specific language server stuff
- use { 'jose-elias-alvarez/nvim-lsp-ts-utils', requires = { 'neovim/nvim-lspconfig', 'nvim-lua/plenary.nvim' }}
- -- sideload in lsp configurations from other tools
- use { 'jose-elias-alvarez/null-ls.nvim', commit = commit.null_ls }
-
+  use({
+    "jose-elias-alvarez/nvim-lsp-ts-utils",
+    requires = { "neovim/nvim-lspconfig", "nvim-lua/plenary.nvim" },
+  })
+  -- sideload in lsp configurations from other tools
+  use({ "jose-elias-alvarez/null-ls.nvim", commit = commit.null_ls })
 
   -- direnv plugin for local environments
-  use { 'direnv/direnv.vim', commit = "ff37d76da391e1ef299d2f5eb84006cb27a67799" }
+  use({ "direnv/direnv.vim", commit = "ff37d76da391e1ef299d2f5eb84006cb27a67799" })
 
   -- incredible lisp editing experience in lua
-  use { 'Olical/conjure', commit = "2717348d1a0687327f59880914fa260e4ad9c685" }
+  use({ "Olical/conjure", commit = "2717348d1a0687327f59880914fa260e4ad9c685" })
 
   -- git interactive in lua
-  use { 'TimUntersberger/neogit', commit = "3086635873ae37fc8e28d7de55c2969682104a7d" }
+  use({ "TimUntersberger/neogit", commit = "3086635873ae37fc8e28d7de55c2969682104a7d" })
   -- view diffs: not yet working with neogit
   -- use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
   -- show git decorators!
-  use { 'lewis6991/gitsigns.nvim', commit = commit.gitsigns, requires = 'nvim-lua/plenary.nvim' }
+  use({ "lewis6991/gitsigns.nvim", commit = commit.gitsigns, requires = "nvim-lua/plenary.nvim" })
 
   -- show code colors in terminal
-  use { 'norcalli/nvim-colorizer.lua', commit = "36c610a9717cc9ec426a07c8e6bf3b3abcb139d6" }
+  use({ "norcalli/nvim-colorizer.lua", commit = "36c610a9717cc9ec426a07c8e6bf3b3abcb139d6" })
 
-  use { 'akinsho/toggleterm.nvim', commit = commit.toggleterm, config = function() require'toggleterm'.setup{} end }
+  use({
+    "akinsho/toggleterm.nvim",
+    commit = commit.toggleterm,
+    config = function()
+      require("toggleterm").setup({})
+    end,
+  })
 
   -- status line
-  use { 'nvim-lualine/lualine.nvim', commit = commit.lualine }
+  use({ "nvim-lualine/lualine.nvim", commit = commit.lualine })
 
   -- quick line jump
-  use 'ggandor/lightspeed.nvim'
+  use("ggandor/lightspeed.nvim")
 
   -- jake color theme
   -- do not pin this - i maintain it : )
-  use 'jakeisnt/stilla.nvim'
+  use("jakeisnt/stilla.nvim")
 
   -- autoparens
-  use { 'windwp/nvim-autopairs', commit = commit.nvim_autopairs }
+  use({ "windwp/nvim-autopairs", commit = commit.nvim_autopairs })
 
-  use {
-      'kyazdani42/nvim-tree.lua',
-      requires = {
-        'kyazdani42/nvim-web-devicons', -- optional, for file icon
-      },
-      config = function() require'nvim-tree'.setup {update_cwd = true, update_focused_file = { enable = true, update_cwd = true }} end
-}
+  use({
+    "kyazdani42/nvim-tree.lua",
+    requires = {
+      "kyazdani42/nvim-web-devicons", -- optional, for file icon
+    },
+    config = function()
+      require("nvim-tree").setup({
+        update_cwd = true,
+        update_focused_file = { enable = true, update_cwd = true },
+      })
+    end,
+  })
 
   -- autocomplete
-  use { 'ms-jpq/coq_nvim', commit = commit.coq_nvim }
+  use({ "ms-jpq/coq_nvim", commit = commit.coq_nvim })
   -- snippets
-  use { 'ms-jpq/coq.artifacts', commit = "3eaf9fba507dd01abcd4870221a636f0ecb8cde0" }
+  use({ "ms-jpq/coq.artifacts", commit = "3eaf9fba507dd01abcd4870221a636f0ecb8cde0" })
 
   -- file tree (defunct)
   -- use { 'ms-jpq/chadtree', run = 'python3 -m chadtree deps' }
 
   -- find files, search things, etc
-  use { 'nvim-telescope/telescope.nvim', commit = commit.telescope, requires = 'nvim-lua/plenary.nvim' }
+  use({
+    "nvim-telescope/telescope.nvim",
+    commit = commit.telescope,
+    requires = "nvim-lua/plenary.nvim",
+  })
 
   -- display all lsp errors inline
-  use { 'folke/trouble.nvim', requires = 'kyazdani42/nvim-web-devicons', commit = "20469be985143d024c460d95326ebeff9971d714" }
+  use({
+    "folke/trouble.nvim",
+    requires = "kyazdani42/nvim-web-devicons",
+    commit = "20469be985143d024c460d95326ebeff9971d714",
+  })
 
   -- let vim ui select things use the telescope picker
-  use { 'nvim-telescope/telescope-ui-select.nvim', commit = "d02a3d3a6b3f6b933c43a28668ae18f78846d3aa" }
+  use({
+    "nvim-telescope/telescope-ui-select.nvim",
+    commit = "d02a3d3a6b3f6b933c43a28668ae18f78846d3aa",
+  })
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then
-    require('packer').sync()
+    require("packer").sync()
   end
 end)
