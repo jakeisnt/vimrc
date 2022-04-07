@@ -192,6 +192,8 @@ return require("packer").startup(function(use)
     commit = "d02a3d3a6b3f6b933c43a28668ae18f78846d3aa",
   })
 
+  use({'scalameta/nvim-metals', requires = { "nvim-lua/plenary.nvim" }})
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then

@@ -21,6 +21,9 @@ local function disable_default_plugins()
   g.loaded_netrwPlugin = 1
   g.loaded_netrwSettings = 1
   g.loaded_netrwFileHandlers = 1
+
+  -- remove f from shortmess to show log messages
+  vim.opt_global.shortmess:remove("F")
 end
 
 disable_default_plugins()
@@ -125,6 +128,15 @@ g.coq_settings = { auto_start = true }
 -- set up rust tools, use coq for lsp
 require("rust-tools").setup(require("coq").lsp_ensure_capabilities({}))
 
+Metals_config = require("metals").bare_config()
+Metals_config.init_options.statusBarProvider = "on"
+Metals_config.settings.useGlobalExecutable = true
+
+vim.cmd [[augroup lsp]]
+vim.cmd [[au!]]
+vim.cmd [[au FileType java,scala,sbt lua require("metals").initialize_or_attach(Metals_config)]]
+vim.cmd [[augroup end]]
+
 local null_ls = require("null-ls")
 null_ls.setup({
   sources = {
@@ -137,7 +149,7 @@ null_ls.setup({
 local luadev = require("lua-dev").setup({})
 require("lspconfig").sumneko_lua.setup(luadev)
 
-local util = require "lspconfig/util"
+-- local util = require "lspconfig/util"
 -- require 'lspconfig'.tsserver.setup{
 --     on_attach = function(client)
 --         client.resolved_capabilities.document_formatting = false
