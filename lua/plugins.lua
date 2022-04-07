@@ -184,6 +184,8 @@ return require("packer").startup(function(use)
     commit = "20469be985143d024c460d95326ebeff9971d714",
   })
 
+  use 'wakatime/vim-wakatime'
+
   -- let vim ui select things use the telescope picker
   use({
     "nvim-telescope/telescope-ui-select.nvim",
