@@ -6,7 +6,12 @@
   (when ok?
     (telescope.setup
       {:defaults
-       {:vimgrep_arguments ["rg" "--color=never" "--no-heading"
+       {:layout_strategy "horizontal"
+        :prompt_prefix "❯ "
+        :selection_caret "❯ "
+        :sorting_strategy "descending"
+        :theme "ivy"
+        :vimgrep_arguments ["rg" "--color=never" "--no-heading"
                             "--with-filename" "--line-number" "--column"
                             "--smart-case" "--hidden" "--follow"
                             "-g" "!.git/"]}})
