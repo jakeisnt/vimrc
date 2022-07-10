@@ -26,7 +26,7 @@
     ;; set up each config with  a proper root directory pattern
     (each [_ server (ipairs servers)]
       (let [config {:root_dir (lspconfig.util.root_pattern [".git/" "."])}]
-        (lsp[server].setup config)))
+        ((. lsp server).setup config)))
 
     (lsp.sumneko_lua.setup
       {:cmd ["lua-language-server"]
@@ -41,7 +41,7 @@
     (map :gi "lua vim.lsp.buf.implementation()")
     (map :K "lua vim.lsp.buf.hover()")
     (map :<c-k> "lua vim.lsp.buf.signature_help()")
-    (map :<leader>l, "lua vim.diagnostic.goto_prev()")
+    (map "<leader>l," "lua vim.diagnostic.goto_prev()")
     (map "<leader>l;" "lua vim.diagnostic.goto_next()")
     (map :<leader>lr "lua vim.lsp.buf.rename()")
     (map :<leader>lf "lua vim.lsp.buf.formatting()")
