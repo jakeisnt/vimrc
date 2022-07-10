@@ -17,12 +17,73 @@
 
 ;;; Generic configuration
 
+(set nvim.o.cmdheight 1)
+(set nvim.o.curssorline true)
+(set nvim.o.foldenable true)
+(set nvim.o.ruler false) ;; status line should measure this
+(set nvim.o.showmode false)
+(set nvim.o.showmatch true)
+(set nvim.o.signcolumn "yes")
 (set nvim.o.termguicolors true)
+(set nvim.o.wrap true)
+(set nvim.o.sidescrolloff 8)
+
+;; backups
+(set nvim.o.backup false)
+(set nvim.o.writebackup false)
+(set nvim.o.swapfile false)
+(set nvim.o.undofile true)
+
+;; completion
+(set nvim.o.completeopt "menuone,noselect")
+(set nvim.o.pumheight 6)
+(set nvim.o.pumblend 10)
+
+;; other general
+(set nvim.o.clipboard "unnamedplus") ;; share system clipboard
+(set nvim.o.hidden true)
+(set nvim.o.joinspaces false)
 (set nvim.o.mouse "a")
-(set nvim.o.updatetime 500)
-(set nvim.o.timeoutlen 500)
-(set nvim.o.sessionoptions "blank,curdir,folds,help,tabpages,winsize")
-(set nvim.o.inccommand :split)
+(set nvim.o.scrolloff 4)
+(set nvim.o.splitbelow true)
+(set nvim.o.splitright true)
+(set nvim.o.timeoutlen 1000)
+(set nvim.o.updatetime 100)
+(set nvim.o.virtualedit "block")
+(set nvim.o.iskeyword (+ nvim.o.iskeyword "-"))
+(set nvim.o.smartindent true)
+
+;; performance
+(set nvim.o.lazyredraw true)
+
+;; search
+(set nvim.o.inccommand "nosplit") ;; show substitutions incrementally
+(set nvim.o.ignorecase true)
+(set nvim.o.smartcase true)
+(set nvim.o.wildignore ".git,**/node_modules/**")
+(set nvim.o.wildicnorecase true)
+
+;; tabs
+(set nvim.o.expandtab true)
+(set nvim.o.shiftwidth 4)
+
+;; shortmess
+(set nvim.o.shortmess (+ nvim.o.shortmess "A" "c" "I" "W"))
+
+;; show comments in italic
+;; cmd("highlight Comment gui=italic")
+
+(set nvim.o.formatoptions 
+     (+ o.formatoptions
+        "j" ; autoremove comments when combining lines
+        "n" ; indent past format list pattern
+        "q" ; allow formatting comments with `gq`
+        "c" ; comments respect textwidth settings
+        "r" ; continue when pressing enter
+        "o" ; don't continue comments
+        "t")); don't autoformat code with nvim; other linters do this
+
+;; (set nvim.o.sessionoptions "blank,curdir,folds,help,tabpages,winsize")
 
 (nvim.ex.set :spell)
 (nvim.ex.set :list)
@@ -73,4 +134,14 @@
   :tpope/vim-vinegar {}
   :w0rp/ale {:mod :ale}
   :wbthomason/packer.nvim {}
-  )
+
+  :jakeisnt/stilla.nvim {}
+  :wakatime/vim-wakatime {}
+  :direnv/direnv.vim {}
+  
+  :simrat39/rust-tools.nvim {:requires [[neovim/nvim-lspconfig]]}
+
+  :nvim-orgmode/orgmode {:config (fn [] (.setup (require "orgmode")))}
+  :ahmedkhalf/project.nvim {:config (fn [] (.setup (require "project.nvim") {}))}
+  :nvim-treesitter/nvim-treesitter {:run ":TSUpdate"}
+)
