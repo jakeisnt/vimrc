@@ -50,7 +50,7 @@
 (set nvim.o.timeoutlen 1000)
 (set nvim.o.updatetime 100)
 (set nvim.o.virtualedit "block")
-(set nvim.o.iskeyword (.. nvim.o.iskeyword "-"))
+;; (set nvim.o.iskeyword (.. nvim.o.iskeyword "-"))
 (set nvim.o.smartindent true)
 
 ;; performance
