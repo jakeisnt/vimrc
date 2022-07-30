@@ -50,7 +50,7 @@
 (set nvim.o.timeoutlen 1000)
 (set nvim.o.updatetime 100)
 (set nvim.o.virtualedit "block")
-(set nvim.o.iskeyword (+ nvim.o.iskeyword "-"))
+(set nvim.o.iskeyword (.. nvim.o.iskeyword "-"))
 (set nvim.o.smartindent true)
 
 ;; performance
@@ -68,13 +68,13 @@
 (set nvim.o.shiftwidth 4)
 
 ;; shortmess
-(set nvim.o.shortmess (+ nvim.o.shortmess "A" "c" "I" "W"))
+(set nvim.o.shortmess (.. nvim.o.shortmess "A" "c" "I" "W"))
 
 ;; show comments in italic
 ;; cmd("highlight Comment gui=italic")
 
 (set nvim.o.formatoptions 
-     (+ o.formatoptions
+     (.. o.formatoptions
         "j" ; autoremove comments when combining lines
         "n" ; indent past format list pattern
         "q" ; allow formatting comments with `gq`
