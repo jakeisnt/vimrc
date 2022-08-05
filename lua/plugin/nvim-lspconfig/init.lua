@@ -8,7 +8,6 @@ local installed = {
   "hls",
   "ocamllsp",
   "zls",
-  "tsserver",
   "rnix",
   "racket_langserver",
   "clojure_lsp",
