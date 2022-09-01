@@ -53,8 +53,6 @@ local commit = {
 return require("packer").startup(function(use)
   -- should manage itself?
   use({ "wbthomason/packer.nvim", commit = commit.packer })
-  -- better highlighting and code interaction
-  use({ "nvim-treesitter/nvim-treesitter", commit = commit.nvim_treesitter, run = ":TSUpdate" })
   -- navigate code with respect to textobjects!
   -- use 'nvim-treesitter/nvim-treesitter-textobjects'
   -- refactoring utils for treesitter
@@ -74,22 +72,7 @@ return require("packer").startup(function(use)
   -- auto close and auto rename html tags
   -- use 'windwp/nvim-ts-autotag'
 
-  -- super project integration
-  use({
-    "ahmedkhalf/project.nvim",
-    commit = commit.project,
-    config = function()
-      require("project_nvim").setup({})
-    end,
-  })
 
-  use({
-    "nvim-orgmode/orgmode",
-    commit = "27c4083e29702c8b4fa5e314926ae054eb4c0dc2",
-    config = function()
-      require("orgmode").setup({})
-    end,
-  })
 
   -- comments for files
   use({
@@ -102,8 +85,6 @@ return require("packer").startup(function(use)
   })
   -- nvim lsp default configs
   use({ "neovim/nvim-lspconfig", commit = commit.nvim_lspconfig })
-  -- advanced rust tooling for nvim
-  use({ "simrat39/rust-tools.nvim", requires = "neovim/nvim-lspconfig" })
   -- js/ts specific language server stuff
   use({
     "jose-elias-alvarez/nvim-lsp-ts-utils",
@@ -112,11 +93,6 @@ return require("packer").startup(function(use)
   -- sideload in lsp configurations from other tools
   use({ "jose-elias-alvarez/null-ls.nvim", commit = commit.null_ls })
 
-  -- direnv plugin for local environments
-  use({ "direnv/direnv.vim", commit = "ff37d76da391e1ef299d2f5eb84006cb27a67799" })
-
-  -- incredible lisp editing experience in lua
-  use({ "Olical/conjure", commit = "2717348d1a0687327f59880914fa260e4ad9c685" })
 
   -- git interactive in lua
   use({ "TimUntersberger/neogit", commit = "3086635873ae37fc8e28d7de55c2969682104a7d" })
@@ -136,15 +112,6 @@ return require("packer").startup(function(use)
     end,
   })
 
-  -- status line
-  use({ "nvim-lualine/lualine.nvim", commit = commit.lualine })
-
-  -- quick line jump
-  use("ggandor/lightspeed.nvim")
-
-  -- jake color theme
-  -- do not pin this - i maintain it : )
-  use("jakeisnt/stilla.nvim")
 
   -- autoparens
   use({ "windwp/nvim-autopairs", commit = commit.nvim_autopairs })
@@ -170,12 +137,6 @@ return require("packer").startup(function(use)
   -- file tree (defunct)
   -- use { 'ms-jpq/chadtree', run = 'python3 -m chadtree deps' }
 
-  -- find files, search things, etc
-  use({
-    "nvim-telescope/telescope.nvim",
-    commit = commit.telescope,
-    requires = "nvim-lua/plenary.nvim",
-  })
 
   -- display all lsp errors inline
   use({
@@ -183,8 +144,6 @@ return require("packer").startup(function(use)
     requires = "kyazdani42/nvim-web-devicons",
     commit = "20469be985143d024c460d95326ebeff9971d714",
   })
-
-  use 'wakatime/vim-wakatime'
 
   -- let vim ui select things use the telescope picker
   use({
