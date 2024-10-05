@@ -50,11 +50,6 @@ local commit = {
   coq_nvim = "0ab471648fd27943c49c28d7f22730ba0b14bdb8",
 }
 
-return require("packer").startup(function(use)
-  -- should manage itself?
-  use({ "wbthomason/packer.nvim", commit = commit.packer })
-  -- better highlighting and code interaction
-  use({ "nvim-treesitter/nvim-treesitter", commit = commit.nvim_treesitter, run = ":TSUpdate" })
   -- navigate code with respect to textobjects!
   -- use 'nvim-treesitter/nvim-treesitter-textobjects'
   -- refactoring utils for treesitter
@@ -69,8 +64,6 @@ return require("packer").startup(function(use)
     event = "BufReadPost",
   })
 
-  -- lua dev
-  use({ "folke/lua-dev.nvim", commit = commit.lua_dev })
   -- auto close and auto rename html tags
   -- use 'windwp/nvim-ts-autotag'
 
@@ -85,8 +78,6 @@ return require("packer").startup(function(use)
 
   -- nvim lsp default configs
   use({ "neovim/nvim-lspconfig", commit = commit.nvim_lspconfig })
-  -- advanced rust tooling for nvim
-  use({ "simrat39/rust-tools.nvim", requires = "neovim/nvim-lspconfig" })
   -- js/ts specific language server stuff
   use({
     "jose-elias-alvarez/nvim-lsp-ts-utils",
@@ -105,8 +96,6 @@ return require("packer").startup(function(use)
   use({ "TimUntersberger/neogit", commit = "3086635873ae37fc8e28d7de55c2969682104a7d" })
   -- view diffs: not yet working with neogit
   -- use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
-  -- show git decorators!
-  use({ "lewis6991/gitsigns.nvim", commit = commit.gitsigns, requires = "nvim-lua/plenary.nvim" })
 
   -- show code colors in terminal
   use({ "norcalli/nvim-colorizer.lua", commit = "36c610a9717cc9ec426a07c8e6bf3b3abcb139d6" })
