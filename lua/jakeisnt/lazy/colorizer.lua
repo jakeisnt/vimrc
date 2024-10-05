@@ -1,6 +1,10 @@
+-- Colors hex codes inline in files,
+-- e.g. #ababab or #ffffff or #000000 or Blue
+
 return {
   "norcalli/nvim-colorizer.lua",
   config = function()
+    vim.opt.termguicolors = true
     require("colorizer").setup({
       "css",
       "javascript",

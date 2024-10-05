@@ -21,7 +21,6 @@ local function disable_default_plugins()
   g.loaded_netrwPlugin = 1
   g.loaded_netrwSettings = 1
   g.loaded_netrwFileHandlers = 1
-
   -- remove f from shortmess to show log messages
   vim.opt_global.shortmess:remove("F")
 end
@@ -50,25 +49,6 @@ require("gitsigns").setup({
     topdelete = { hl = "GitSignsDelete", text = "契" },
     changedelete = { hl = "GitSignsChange", text = "▎" },
   },
-})
-
--- highlight color names inline
-vim.opt.termguicolors = true
-require("colorizer").setup({
-  "css",
-  "javascript",
-  "lua",
-  html = { mode = "background" },
-}, {
-  RGB = true, -- #RGB hex codes
-  RRGGBB = true, -- #RRGGBB hex codes
-  names = true, -- "Name" codes like Blue
-  RRGGBBAA = true, -- #RRGGBBAA hex codes
-  rgb_fn = true, -- CSS rgb() and rgba() functions
-  hsl_fn = true, -- CSS hs,l() and hsla() functions
-  css = true, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
-  css_fn = true, -- Enable all CSS *functions*: rgb_fn, hsl_fn
-  mode = "background", -- Set the display mode. background / foreground
 })
 
 require("nvim-autopairs").setup({})
