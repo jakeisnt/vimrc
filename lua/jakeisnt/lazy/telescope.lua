@@ -35,9 +35,16 @@ return {
 
     local builtin = require('telescope.builtin')
     vim.keymap.set('n', '<leader>ff', M.project_files, {})
-    -- vim.keymap.set('n', '<leader>fg', builtin.git_files, {})
-    -- vim.keymap.set('n', '<leader>fl', builtin.live_grep, {})
-    -- vim.keymap.set('n', ';', builtin.buffers, {})
+    vim.keymap.set('n', '<leader>fg', builtin.git_files, {})
+    vim.keymap.set('n', '<leader>fl', builtin.live_grep, {})
+    vim.keymap.set('n', ';', builtin.buffers, {})
     -- vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+    -- nmap("<space>fb", "<cmd>Telescope buffers<CR>")
+    -- nmap("<space>pp", "<cmd>Telescope projects<CR>")
+    -- nmap("<space>,", "<cmd>Telescope buffers<CR>")
+    -- nmap("<space>fh", "<cmd>Telescope help_tags<CR>")
+    -- nmap("<space>fo", "<cmd>Telescope oldfiles<CR>")
+    -- nmap("<space>fd", '<cmd>lua require("plugin.telescope").find_dotfiles()<CR>')
+    -- nmap("<space>fk", ":Telescope file_browser hidden=true<cr>")
   end
 }

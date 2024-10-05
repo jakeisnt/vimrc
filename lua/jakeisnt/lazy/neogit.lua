@@ -9,7 +9,19 @@ return {
     local neogit = require('neogit');
 
     neogit.setup({
-      -- disable_commit_confirmation = true,
+      disable_commit_confirmation = true,
+      integrations = {
+        diffview = true,
+      },
+
+      mappings = {
+        status = {
+          -- from the git menu,
+          -- press 'return' to open diff view for a file
+          -- TODO: Not recognized as a command
+          -- ["<CR>"] = "DiffviewOpen",
+        },
+      },
     })
 
     vim.keymap.set('n', '<leader>gg', neogit.open)

@@ -5,12 +5,22 @@ return {
     local configs = require("nvim-treesitter.configs")
 
     configs.setup({
-      ensure_installed = {
-        "c", "lua", "vim", "vimdoc", "javascript", "html", "python", "typescript"
-      },
-      sync_install = false,
+      ensure_installed = "all",
       highlight = { enable = true },
       indent = { enable = true },
+      autopairs = { enable = true },
+      rainbow = { enable = true },
+      autotag = { enable = true },
+      context_commentstring = { enable = true },
+      refactor = {
+        navigation = {
+          enable = true,
+          keymaps = {
+            goto_definition = "gd",
+            list_definitions = "gD",
+          },
+        },
+      },
     })
   end
 }

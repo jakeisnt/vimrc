@@ -1,15 +1,4 @@
 local fn = vim.fn
-local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-if fn.empty(fn.glob(install_path)) > 0 then
-  packer_bootstrap = fn.system({
-    "git",
-    "clone",
-    "--depth",
-    "1",
-    "https://github.com/wbthomason/packer.nvim",
-    install_path,
-  })
-end
 
 local commit = {
   barbar = "6e638309efcad2f308eb9c5eaccf6f62b794bbab",
@@ -92,14 +81,6 @@ local commit = {
   -- incredible lisp editing experience in lua
   use({ "Olical/conjure", commit = "2717348d1a0687327f59880914fa260e4ad9c685" })
 
-  -- git interactive in lua
-  use({ "TimUntersberger/neogit", commit = "3086635873ae37fc8e28d7de55c2969682104a7d" })
-  -- view diffs: not yet working with neogit
-  -- use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
-
-  -- show code colors in terminal
-  use({ "norcalli/nvim-colorizer.lua", commit = "36c610a9717cc9ec426a07c8e6bf3b3abcb139d6" })
-
   use({
     "akinsho/toggleterm.nvim",
     commit = commit.toggleterm,
@@ -113,9 +94,6 @@ local commit = {
 
   -- quick line jump
   use("ggandor/lightspeed.nvim")
-
-  -- autoparens
-  use({ "windwp/nvim-autopairs", commit = commit.nvim_autopairs })
 
   use({
     "kyazdani42/nvim-tree.lua",

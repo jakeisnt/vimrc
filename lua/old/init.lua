@@ -69,42 +69,7 @@ require("lualine").setup({
   },
 })
 
-require("neogit").setup({
-  disable_commit_confirmation = true,
-  integrations = {
-    diffview = true,
-  },
-
-  mappings = {
-    status = {
-      ["<CR>"] = "DiffviewOpen",
-    },
-  },
-})
-
 g.coq_settings = { auto_start = true }
-
--- language server things / nvim-lsp things
--- set up rust tools, use coq for lsp
-require("rust-tools").setup(require("coq").lsp_ensure_capabilities({}))
-
-Metals_config = require("metals").bare_config()
-Metals_config.init_options.statusBarProvider = "on"
-Metals_config.settings.useGlobalExecutable = true
-
-vim.cmd [[augroup lsp]]
-vim.cmd [[au!]]
-vim.cmd [[au FileType java,scala,sbt lua require("metals").initialize_or_attach(Metals_config)]]
-vim.cmd [[augroup end]]
-
-local null_ls = require("null-ls")
-null_ls.setup({
-  sources = {
-    null_ls.builtins.diagnostics.eslint, -- eslint or eslint_d
-    null_ls.builtins.code_actions.eslint, -- eslint or eslint_d
-    null_ls.builtins.formatting.eslint, -- prettier, eslint, eslint_d, or prettierd
-  },
-})
 
 local luadev = require("lua-dev").setup({})
 require("lspconfig").sumneko_lua.setup(luadev)
@@ -118,26 +83,6 @@ require("lspconfig").sumneko_lua.setup(luadev)
 -- }
 
 -- require 'lspconfig'.eslint.setup{ }
-
--- treesitter
-require("nvim-treesitter.configs").setup({
-  -- highlight = { enable = true },
-  ensure_installed = "maintained",
-  indent = { enable = true },
-  autopairs = { enable = true },
-  rainbow = { enable = true },
-  autotag = { enable = true },
-  context_commentstring = { enable = true },
-  refactor = {
-    navigation = {
-      enable = true,
-      keymaps = {
-        goto_definition = "gd",
-        list_definitions = "gD",
-      },
-    },
-  },
-})
 
 -- escape from toggleterm
 function _G.set_terminal_keymaps()

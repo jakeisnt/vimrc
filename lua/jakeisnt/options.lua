@@ -56,5 +56,11 @@ o.shortmess:append({ A = true, c = true, I = true, W = true })
 vim.cmd("highlight Comment gui=italic")
 
 -- Format options
-o.formatoptions = "jqn"
-o.formatoptions:remove({ "c", "r", "o", "t" })
+o.formatoptions = o.formatoptions
+  + "j" -- Auto-remove comments when combining lines ( <C-J> )
+  + "n" -- Indent past the formatlistpat, not underneath it.
+  + "q" -- Allow formatting comments w/ gq
+  - "c" -- In general, I like it when comments respect textwidth
+  - "r" -- But do continue when pressing enter.
+  - "o" -- O and o, don't continue comments
+  - "t" -- Don't auto format my code. I have linters for that.
