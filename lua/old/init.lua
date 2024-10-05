@@ -30,8 +30,6 @@ vim.cmd([[runtime plugin/direnv.vim]])
 
 
 require("telescope").load_extension("projects")
-require("telescope").load_extension("ui-select")
-
 
 -- require'nvim-treesitter.configs'.setup {
   -- If TS highlights are not enabled at all, or disabled via `disable` prop, highlighting will fallback to default Vim syntax highlighting
@@ -39,17 +37,6 @@ require("telescope").load_extension("ui-select")
    -- enable = true,
   -- },
 --}
-
--- change default git signs
-require("gitsigns").setup({
-  signs = {
-    add = { hl = "GitSignsAdd", text = "▎" },
-    change = { hl = "GitSignsChange", text = "▎" },
-    delete = { hl = "GitSignsDelete", text = "契" },
-    topdelete = { hl = "GitSignsDelete", text = "契" },
-    changedelete = { hl = "GitSignsChange", text = "▎" },
-  },
-})
 
 require("nvim-autopairs").setup({})
 require("trouble").setup({})
