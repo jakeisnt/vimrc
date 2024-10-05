@@ -13,6 +13,6 @@ end
 vim.opt.rtp:prepend(lazypath)
  
 require("lazy").setup({
-    spec = "marshmalon.lazy",
+    spec = "jakeisnt.lazy",
     change_detection = { notify = false }
 })
