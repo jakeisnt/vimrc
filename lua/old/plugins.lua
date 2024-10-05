@@ -83,23 +83,6 @@ return require("packer").startup(function(use)
     end,
   })
 
-  use({
-    "nvim-orgmode/orgmode",
-    commit = "27c4083e29702c8b4fa5e314926ae054eb4c0dc2",
-    config = function()
-      require("orgmode").setup({})
-    end,
-  })
-
-  -- comments for files
-  use({
-    "numToStr/Comment.nvim",
-    commit = commit.comment,
-    event = "BufRead",
-    config = function()
-      require("Comment").setup()
-    end,
-  })
   -- nvim lsp default configs
   use({ "neovim/nvim-lspconfig", commit = commit.nvim_lspconfig })
   -- advanced rust tooling for nvim
