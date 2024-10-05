@@ -29,9 +29,9 @@ return {
 
     require('mason-lspconfig').setup({
       ensure_installed = {
-        "tsserver",
-        "lua_ls",
-        "ruff"
+        -- "tsserver", -- typescript
+        -- "lua_ls", -- lua
+        -- "ruff" -- python
       },
       handlers = {
         function(server_name)
