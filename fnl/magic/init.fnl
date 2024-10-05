@@ -18,7 +18,7 @@
 ;;; Generic configuration
 
 (set nvim.o.cmdheight 1)
-(set nvim.o.curssorline true)
+(set nvim.o.cursorline true)
 (set nvim.o.foldenable true)
 (set nvim.o.ruler false) ;; status line should measure this
 (set nvim.o.showmode false)
@@ -61,7 +61,7 @@
 (set nvim.o.ignorecase true)
 (set nvim.o.smartcase true)
 (set nvim.o.wildignore ".git,**/node_modules/**")
-(set nvim.o.wildicnorecase true)
+(set nvim.o.wildignorecase true)
 
 ;; tabs
 (set nvim.o.expandtab true)
@@ -74,7 +74,7 @@
 ;; cmd("highlight Comment gui=italic")
 
 (set nvim.o.formatoptions 
-     (.. o.formatoptions
+     (.. nvim.o.formatoptions
         "j" ; autoremove comments when combining lines
         "n" ; indent past format list pattern
         "q" ; allow formatting comments with `gq`
