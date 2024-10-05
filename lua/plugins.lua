@@ -144,7 +144,7 @@ return require("packer").startup(function(use)
 
   -- jake color theme
   -- do not pin this - i maintain it : )
-  use("jakeisnt/stilla.nvim")
+  use("stilla-theme/stilla.nvim")
 
   -- autoparens
   use({ "windwp/nvim-autopairs", commit = commit.nvim_autopairs })
