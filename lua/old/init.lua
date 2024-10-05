@@ -26,11 +26,6 @@ local function disable_default_plugins()
   vim.opt_global.shortmess:remove("F")
 end
 
-disable_default_plugins()
-require("core.utils")
-require("core.options")
-require("core.keymaps")
-require("core.autocmds")
 
 vim.cmd([[runtime plugin/direnv.vim]])
 
@@ -45,7 +40,6 @@ require("telescope").setup({
 })
 
 require("telescope").load_extension("projects")
-
 require("telescope").load_extension("ui-select")
 
 

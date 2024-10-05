@@ -142,10 +142,6 @@ return require("packer").startup(function(use)
   -- quick line jump
   use("ggandor/lightspeed.nvim")
 
-  -- jake color theme
-  -- do not pin this - i maintain it : )
-  use("stilla-theme/stilla.nvim")
-
   -- autoparens
   use({ "windwp/nvim-autopairs", commit = commit.nvim_autopairs })
 
@@ -167,16 +163,6 @@ return require("packer").startup(function(use)
   -- snippets
   use({ "ms-jpq/coq.artifacts", commit = "3eaf9fba507dd01abcd4870221a636f0ecb8cde0" })
 
-  -- file tree (defunct)
-  -- use { 'ms-jpq/chadtree', run = 'python3 -m chadtree deps' }
-
-  -- find files, search things, etc
-  use({
-    "nvim-telescope/telescope.nvim",
-    commit = commit.telescope,
-    requires = "nvim-lua/plenary.nvim",
-  })
-
   -- display all lsp errors inline
   use({
     "folke/trouble.nvim",
@@ -185,18 +171,4 @@ return require("packer").startup(function(use)
   })
 
   use 'wakatime/vim-wakatime'
-
-  -- let vim ui select things use the telescope picker
-  use({
-    "nvim-telescope/telescope-ui-select.nvim",
-    commit = "d02a3d3a6b3f6b933c43a28668ae18f78846d3aa",
-  })
-
-  use({'scalameta/nvim-metals', requires = { "nvim-lua/plenary.nvim" }})
-
-  -- Automatically set up your configuration after cloning packer.nvim
-  -- Put this at the end after all plugins
-  if packer_bootstrap then
-    require("packer").sync()
-  end
 end)
