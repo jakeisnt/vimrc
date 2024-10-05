@@ -29,15 +29,6 @@ end
 
 vim.cmd([[runtime plugin/direnv.vim]])
 
--- set my theme
-require("stilla").set()
-
--- telescope; defer ui select ot telescope
-require("telescope").setup({
-  extensions = {
-    ["ui-select"] = { require("telescope.themes").get_dropdown({}) },
-  },
-})
 
 require("telescope").load_extension("projects")
 require("telescope").load_extension("ui-select")
