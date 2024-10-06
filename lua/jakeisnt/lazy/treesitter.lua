@@ -2,7 +2,6 @@ return {
   "nvim-treesitter/nvim-treesitter",
   build = ":TSUpdate",
   dependencies = {
-    -- "JoosepAlviste/nvim-ts-context-commentstring",
     "nvim-treesitter/nvim-treesitter-textobjects",
     "windwp/nvim-ts-autotag",
     "nvim-treesitter/nvim-treesitter-refactor"
@@ -17,8 +16,6 @@ return {
       indent = { enable = true },
       autopairs = { enable = true },
       rainbow = { enable = true },
-      autotag = { enable = true },
-      context_commentstring = { enable = true },
       refactor = {
         navigation = {
           enable = true,
@@ -42,11 +39,6 @@ return {
         },
       },
     })
-
-    -- Change comment string based on what's under the cursor
-    -- require('nvim-ts-context-commentstring').setup({
-    --   event = "BufReadPost",
-    -- })
 
     -- TODO: Define TextObject configuration:
     -- https://github.com/nvim-treesitter/nvim-treesitter-textobjects
