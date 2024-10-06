@@ -4,8 +4,6 @@
 return {
   "neovim/nvim-lspconfig",
   dependencies = {
-    "williamboman/mason.nvim",
-    "williamboman/mason-lspconfig.nvim",
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-buffer",
     "hrsh7th/cmp-path",
@@ -44,42 +42,6 @@ return {
     )
 
     require("fidget").setup({})
-    require("mason").setup()
-
-    require('mason-lspconfig').setup({
-      ensure_installed = {
-        -- "tsserver",
-        "lua_ls",
-        -- "ruff"
-      },
-      handlers = {
-        function(server_name)
-          require('lspconfig')[server_name].setup({
-            capabilities = capabilities,
-          })
-        end,
-        lua_ls = function()
-          require('lspconfig').lua_ls.setup({
-            capabilities = capabilities,
-            settings = {
-              Lua = {
-                runtime = {
-                  version = 'LuaJIT'
-                },
-                diagnostics = {
-                  globals = { 'vim', 'love' },
-                },
-                workspace = {
-                  library = {
-                    vim.env.VIMRUNTIME,
-                  }
-                }
-              }
-            }
-          })
-        end
-      }
-    })
 
     local cmp = require('cmp')
     local cmp_select = { behavior = cmp.SelectBehavior.Select }
