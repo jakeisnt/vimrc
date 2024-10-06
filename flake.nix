@@ -22,7 +22,7 @@
       in rec {
         devShell = with pkgs; mkShell {
           name = "vimrc";
-          buildInputs = [ stylua ];
+          buildInputs = [ stylua luajit luajitPackages.lua-lsp lua-language-server ];
         };
       });
 }
