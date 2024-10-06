@@ -28,8 +28,8 @@ return {
   },
   init = function()
     vim.g.coq_settings = {
-        auto_start = true, -- if you want to start COQ at startup
-        -- Your COQ settings here
+      auto_start = true, -- if you want to start COQ at startup
+      -- Your COQ settings here
     }
   end,
   config = function()
@@ -58,10 +58,10 @@ return {
         { name = 'buffer',  keyword_length = 3 },
       },
       mapping = cmp.mapping.preset.insert({
-        -- ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-        -- ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
+        ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
+        ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
         ['<CR>'] = cmp.mapping.confirm({ select = true }),
-        -- ['<C-Space>'] = cmp.mapping.complete(),
+        ['<C-Space>'] = cmp.mapping.complete(),
       }),
       snippet = {
         expand = function(args)
@@ -69,63 +69,83 @@ return {
         end,
       },
     })
+
+    local on_attach = function(client, buffer)
+      vim.keymap.set('n', "<leader>l,", vim.diagnostic.goto_prev, { buffer = buffer })
+      vim.keymap.set('n', "<leader>l;", vim.diagnostic.goto_next, { buffer = buffer })
+      vim.keymap.set('n', "<leader>la", vim.lsp.buf.code_action, { buffer = buffer })
+      vim.keymap.set('n', "<leader>lf", vim.lsp.buf.format, { buffer = buffer })
+      vim.keymap.set('n', "<leader>lh", vim.lsp.buf.hover, { buffer = buffer })
+      vim.keymap.set('n', "<leader>lm", vim.lsp.buf.rename, { buffer = buffer })
+      vim.keymap.set('n', "<leader>lr", vim.lsp.buf.references, { buffer = buffer })
+      vim.keymap.set('n', "<leader>ls", vim.lsp.buf.document_symbol, { buffer = buffer })
+      vim.keymap.set('n', "<leader>li", "<cmd>LspInfo<cr>", { buffer = buffer })
+      vim.keymap.set('n', "<leader>lR", "<cmd>LspRestart<cr>", { buffer = buffer })
+      vim.keymap.set('n', "gd", vim.lsp.buf.definition, { buffer = buffer })
+      vim.keymap.set('n', "gD", vim.lsp.buf.declaration, { buffer = buffer })
+      vim.keymap.set('n', "gi", vim.lsp.buf.implementation, { buffer = buffer })
+      vim.keymap.set('n', "gr", vim.lsp.buf.references, { buffer = buffer })
+      vim.keymap.set('n', "ca", vim.lsp.buf.code_action, { buffer = buffer })
+      vim.keymap.set('n', "<space>gh", vim.lsp.buf.signature_help, { buffer = buffer })
+
+      -- Use 'client.server_capabilities' for modern Neovim
+      if client.server_capabilities.documentFormattingProvider then
+        vim.api.nvim_create_autocmd("BufWritePre", {
+          buffer = buffer,
+          callback = function()
+            vim.lsp.buf.format({ async = false, timeout_ms = 1000 })
+          end,
+        })
+      end
+    end
+
+
+    local lspconfig = require("lspconfig")
+
+    local installed = {
+      "clangd",
+      "pyright",
+      "hls",
+      "ocamllsp",
+      "zls",
+      "rnix",
+      "racket_langserver",
+      "clojure_lsp",
+    }
+
+    local function setup_servers()
+      for _, server in pairs(installed) do
+        local config = { root_dir = lspconfig.util.root_pattern({ ".git/", "." }) }
+        config.on_attach = on_attach
+        lspconfig[server].setup(config)
+      end
+    end
+
+    lspconfig.lua_ls.setup {
+      on_attach = on_attach,
+      settings = {
+        Lua = {
+          runtime = {
+            -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+            version = 'LuaJIT',
+          },
+          diagnostics = {
+            -- Get the language server to recognize the `vim` global
+            globals = { 'vim' },
+          },
+          workspace = {
+            -- Make the server aware of Neovim runtime files
+            library = vim.api.nvim_get_runtime_file("", true),
+            checkThirdParty = false,
+          },
+          -- Do not send telemetry data containing a randomized but unique identifier
+          telemetry = {
+            enable = false,
+          },
+        },
+      },
+    }
+
+    setup_servers()
   end
 }
-
--- TODO: from my old config. Use some of these?
--- local buf_nmap = U.keymap.buf_nmap
--- local function lua_nmap(lhs, rhs, opts)
---   buf_nmap(lhs, "<cmd>lua  " .. rhs .. "<CR>", opts)
--- end
---
--- -- All of these are buffer mappings
--- local function mappings()
---   lua_nmap("<leader>l,", "vim.diagnostic.goto_prev()")
---   lua_nmap("<leader>l;", "vim.diagnostic.goto_next()")
---   lua_nmap("<leader>la", "vim.lsp.buf.code_action()")
---   lua_nmap("<leader>lf", "vim.lsp.buf.formatting()")
---   lua_nmap("<leader>lh", "vim.lsp.buf.hover()")
---   lua_nmap("<leader>lm", "vim.lsp.buf.rename()")
---   lua_nmap("<leader>lr", "vim.lsp.buf.references()")
---   lua_nmap("<leader>ls", "vim.lsp.buf.document_symbol()")
---   buf_nmap("<leader>li", "<cmd>LspInfo<cr>")
---   buf_nmap("<leader>lr", "<cmd>LspRestart<cr>")
---   lua_nmap("gd", "vim.lsp.buf.definition()")
---   lua_nmap("gD", "vim.lsp.buf.declaration()")
---   lua_nmap("gi", "vim.lsp.buf.implementation()")
---   lua_nmap("gr", "vim.lsp.buf.references()")
---   lua_nmap("ca", "vim.lsp.buf.code_action()")
---   lua_nmap("<space>gh", "vim.lsp.buf.signature_help()")
--- end
---
--- return function(client)
---   mappings()
---   if client.resolved_capabilities.document_formatting then
---     vim.cmd([[autocmd! BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 1000)]])
---   end
--- end
-
--- local lspconfig = require("lspconfig")
--- local on_attach = require("plugin.nvim-lspconfig.on-attach")
---
--- local installed = {
---   "clangd",
---   "pyright",
---   "sumneko_lua",
---   "hls",
---   "ocamllsp",
---   "zls",
---   "rnix",
---   "racket_langserver",
---   "clojure_lsp",
--- }
---
--- local function setup_servers()
---   for _, server in pairs(installed) do
---     local config = { root_dir = lspconfig.util.root_pattern({ ".git/", "." }) }
---     config.on_attach = on_attach
---     lspconfig[server].setup(config)
---   end
--- end
---
--- setup_servers()
