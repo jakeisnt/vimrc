@@ -1,3 +1,4 @@
+-- TODO: No idea how to use this.
 return {
   "zbirenbaum/copilot.lua",
   cmd = "Copilot",
