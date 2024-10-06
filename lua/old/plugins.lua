@@ -40,9 +40,6 @@ local fn = vim.fn
   -- status line
   use({ "nvim-lualine/lualine.nvim", commit = commit.lualine })
 
-  -- quick line jump
-  use("ggandor/lightspeed.nvim")
-
   use({
     "kyazdani42/nvim-tree.lua",
     requires = {
@@ -60,13 +57,6 @@ local fn = vim.fn
   use({ "ms-jpq/coq_nvim", commit = commit.coq_nvim })
   -- snippets
   use({ "ms-jpq/coq.artifacts", commit = "3eaf9fba507dd01abcd4870221a636f0ecb8cde0" })
-
-  -- display all lsp errors inline
-  use({
-    "folke/trouble.nvim",
-    requires = "kyazdani42/nvim-web-devicons",
-    commit = "20469be985143d024c460d95326ebeff9971d714",
-  })
 
   use 'wakatime/vim-wakatime'
 end)

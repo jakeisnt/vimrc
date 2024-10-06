@@ -1,6 +1,6 @@
 return {
-  'stilla-theme/stilla.nvim',
-  config = function ()
+  "stilla-theme/stilla.nvim",
+  config = function()
     vim.cmd.colorscheme("stilla")
-  end
-};
+  end,
+}

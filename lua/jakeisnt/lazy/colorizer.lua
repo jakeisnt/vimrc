@@ -22,6 +22,5 @@ return {
       css_fn = true, -- Enable all CSS *functions*: rgb_fn, hsl_fn
       mode = "background", -- Set the display mode. background / foreground
     })
-  end
+  end,
 }
-

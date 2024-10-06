@@ -1,11 +1,10 @@
 return {
-  'ggandor/leap.nvim',
+  "ggandor/leap.nvim",
   dependencies = {
-    'tpope/vim-repeat'
+    "tpope/vim-repeat",
   },
-  config = function ()
+  config = function()
     -- defines 's', 'S', and 'gS'
-    require('leap').create_default_mappings()
-  end
-
+    require("leap").create_default_mappings()
+  end,
 }

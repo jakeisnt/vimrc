@@ -22,7 +22,7 @@
       in rec {
         devShell = with pkgs; mkShell {
           name = "vimrc";
-          buildInputs = [ ];
+          buildInputs = [ stylua ];
         };
       });
 }

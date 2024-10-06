@@ -1,6 +1,5 @@
 local o = vim.opt
 
-
 -- local function disable_default_plugins()
 --   g.loaded_gzip = 1
 --   g.loaded_tar = 1
