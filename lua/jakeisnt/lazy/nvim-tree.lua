@@ -15,6 +15,8 @@ return {
     vim.opt.termguicolors = true
     require("nvim-tree").setup(
       {
+        update_cwd = true,
+        update_focused_file = { enable = true, update_cwd = true },
         filters = {
           dotfiles = false,
           git_ignored = false
