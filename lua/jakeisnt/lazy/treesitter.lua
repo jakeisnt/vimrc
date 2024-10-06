@@ -43,6 +43,7 @@ return {
     -- TODO: Define TextObject configuration:
     -- https://github.com/nvim-treesitter/nvim-treesitter-textobjects
     -- require('nvim-treesitter-textobjects').setup()
+
     require('nvim-ts-autotag').setup({
       opts = {
         -- Defaults
