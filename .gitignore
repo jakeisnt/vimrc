@@ -1,2 +1,4 @@
 theme.vim
 plugin/*
+
+.direnv/
