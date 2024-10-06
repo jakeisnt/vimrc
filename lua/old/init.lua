@@ -25,20 +25,6 @@ local function disable_default_plugins()
   vim.opt_global.shortmess:remove("F")
 end
 
-
-vim.cmd([[runtime plugin/direnv.vim]])
-
-
-require("telescope").load_extension("projects")
-
--- require'nvim-treesitter.configs'.setup {
-  -- If TS highlights are not enabled at all, or disabled via `disable` prop, highlighting will fallback to default Vim syntax highlighting
-  --highlight = {
-   -- enable = true,
-  -- },
---}
-
-require("nvim-autopairs").setup({})
 require("trouble").setup({})
 require("lualine").setup({
   options = {

@@ -68,9 +68,14 @@ vim.keymap.set('n', '<Right>', 'l')
 vim.keymap.set('n', 'n', function() return vim.v.searchforward == 1 and 'n' or 'N' end, { expr = true })
 vim.keymap.set('n', 'N', function() return vim.v.searchforward == 1 and 'N' or 'n' end, { expr = true })
 
+-- 'Y' should also copy the key under the cursor
+vim.keymap.set('n', "Y", "y$")
 
 -- / vim convenience commands /
-vim.keymap.set('n', '<leader>V', 'ggVG') -- Select whole file
+
+-- Move the current line up and down by holding alt
+vim.keymap.set('n', '<A-j>', ':m .+1<cr>==')
+vim.keymap.set('n', '<A-k>', ':m .-2<cr>==')
 
 -- Use keys to navigate windows
 vim.keymap.set('n', '<leader>wh', '<C-W>h')
