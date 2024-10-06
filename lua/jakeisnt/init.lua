@@ -12,4 +12,5 @@ vim.opt.foldlevel = 99
 require("jakeisnt.lazy_init")
 require("jakeisnt/aucmds")
 require("jakeisnt/options")
+require("jakeisnt/keymap")
 
