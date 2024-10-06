@@ -111,6 +111,7 @@ return {
       "rnix",
       "racket_langserver",
       "clojure_lsp",
+      "eslint"
     }
 
     local function setup_servers()
