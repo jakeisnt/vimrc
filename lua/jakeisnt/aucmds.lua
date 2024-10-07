@@ -50,7 +50,6 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 
--- When a file buffer opens, record it in nushell history
 vim.api.nvim_create_autocmd({ "BufEnter" }, {
   group = authgroup,
   pattern = "*",
@@ -59,11 +58,28 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
     local file_path = vim.fn.expand("%:p")
 
     if buftype == "" and file_path ~= "" then
-      local nushell_history_path = vim.fn.expand("~/.config/nushell/history.txt")
+      local shell = vim.env.SHELL
+
       local relative_path = vim.fn.fnamemodify(file_path, ":~")
 
-      local nushell_command = string.format("'vi %s\n' | save --append %s", relative_path, nushell_history_path)
-      vim.fn.system(nushell_command)
+      local bash_history_path = vim.fn.expand("~/.bash_history")
+      local zsh_history_path = vim.fn.expand("~/.zsh_history")
+      local nushell_history_path = vim.fn.expand("~/.config/nushell/history.txt")
+
+      local command = ""
+
+      if shell and (shell:find("nu") or shell:find("nushell")) then
+        -- Use nushell command
+        command = string.format("'vi %s\n' | save --append %s", relative_path, nushell_history_path)
+      elseif shell and shell:find("zsh") then
+        -- Use zsh command
+        command = string.format("echo 'vi %s' >> %s", relative_path, zsh_history_path)
+      else
+        -- Default to bash command
+        command = string.format("echo 'vi %s' >> %s", relative_path, bash_history_path)
+      end
+
+      vim.fn.system(command)
     end
   end
 })
