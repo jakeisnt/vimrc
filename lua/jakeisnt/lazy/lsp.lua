@@ -108,7 +108,7 @@ return {
       "hls",
       "ocamllsp",
       "zls",
-      "rnix",
+      "nil",
       "racket_langserver",
       "clojure_lsp",
       "eslint"
