@@ -51,13 +51,14 @@ check_internet_connection(function(has_internet)
       -- print("Commit messages: " .. vim.inspect(commit_messages))
       if true then
         vim.schedule(function()
-          vim.ui.input({
-            prompt = "Neovim config update available. Reload config to apply? (y/n): ",
-          }, function(input)
-            if input and input:lower() == "y" then
+          vim.ui.select({"Yes", "No"}, {
+            prompt = "Neovim config update available. Reload config to apply?",
+          }, function(choice)
+            if choice == "Yes" then
               vim.schedule(function()
                 print("Reloading config...")
                 vim.cmd("silent! source " .. vim.fn.stdpath("config") .. "/init.lua")
+                print("Config reloaded.")
               end)
             end
           end)
