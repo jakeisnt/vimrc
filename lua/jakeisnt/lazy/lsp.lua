@@ -43,50 +43,50 @@ return {
 
     require("fidget").setup({})
 
-    local cmp = require('cmp')
+    local cmp = require("cmp")
     local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
     -- this is the function that loads the extra snippets to luasnip
     -- from rafamadriz/friendly-snippets
-    require('luasnip.loaders.from_vscode').lazy_load()
+    require("luasnip.loaders.from_vscode").lazy_load()
 
     cmp.setup({
       sources = {
-        { name = 'path' },
-        { name = 'nvim_lsp' },
-        { name = 'luasnip', keyword_length = 2 },
-        { name = 'buffer',  keyword_length = 3 },
+        { name = "path" },
+        { name = "nvim_lsp" },
+        { name = "luasnip", keyword_length = 2 },
+        { name = "buffer", keyword_length = 3 },
       },
       mapping = cmp.mapping.preset.insert({
-        ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-        ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-        ['<CR>'] = cmp.mapping.confirm({ select = true }),
-        ['<C-Space>'] = cmp.mapping.complete(),
+        ["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
+        ["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
+        ["<CR>"] = cmp.mapping.confirm({ select = true }),
+        ["<C-Space>"] = cmp.mapping.complete(),
       }),
       snippet = {
         expand = function(args)
-          require('luasnip').lsp_expand(args.body)
+          require("luasnip").lsp_expand(args.body)
         end,
       },
     })
 
     local on_attach = function(client, buffer)
-      vim.keymap.set('n', "<leader>l,", vim.diagnostic.goto_prev, { buffer = buffer })
-      vim.keymap.set('n', "<leader>l;", vim.diagnostic.goto_next, { buffer = buffer })
-      vim.keymap.set('n', "<leader>la", vim.lsp.buf.code_action, { buffer = buffer })
-      vim.keymap.set('n', "<leader>lf", vim.lsp.buf.format, { buffer = buffer })
-      vim.keymap.set('n', "<leader>lh", vim.lsp.buf.hover, { buffer = buffer })
-      vim.keymap.set('n', "<leader>lm", vim.lsp.buf.rename, { buffer = buffer })
-      vim.keymap.set('n', "<leader>lr", vim.lsp.buf.references, { buffer = buffer })
-      vim.keymap.set('n', "<leader>ls", vim.lsp.buf.document_symbol, { buffer = buffer })
-      vim.keymap.set('n', "<leader>li", "<cmd>LspInfo<cr>", { buffer = buffer })
-      vim.keymap.set('n', "<leader>lR", "<cmd>LspRestart<cr>", { buffer = buffer })
-      vim.keymap.set('n', "gd", vim.lsp.buf.definition, { buffer = buffer })
-      vim.keymap.set('n', "gD", vim.lsp.buf.declaration, { buffer = buffer })
-      vim.keymap.set('n', "gi", vim.lsp.buf.implementation, { buffer = buffer })
-      vim.keymap.set('n', "gr", vim.lsp.buf.references, { buffer = buffer })
-      vim.keymap.set('n', "ca", vim.lsp.buf.code_action, { buffer = buffer })
-      vim.keymap.set('n', "<space>gh", vim.lsp.buf.signature_help, { buffer = buffer })
+      vim.keymap.set("n", "<leader>l,", vim.diagnostic.goto_prev, { buffer = buffer })
+      vim.keymap.set("n", "<leader>l;", vim.diagnostic.goto_next, { buffer = buffer })
+      vim.keymap.set("n", "<leader>la", vim.lsp.buf.code_action, { buffer = buffer })
+      vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format, { buffer = buffer })
+      vim.keymap.set("n", "<leader>lh", vim.lsp.buf.hover, { buffer = buffer })
+      vim.keymap.set("n", "<leader>lm", vim.lsp.buf.rename, { buffer = buffer })
+      vim.keymap.set("n", "<leader>lr", vim.lsp.buf.references, { buffer = buffer })
+      vim.keymap.set("n", "<leader>ls", vim.lsp.buf.document_symbol, { buffer = buffer })
+      vim.keymap.set("n", "<leader>li", "<cmd>LspInfo<cr>", { buffer = buffer })
+      vim.keymap.set("n", "<leader>lR", "<cmd>LspRestart<cr>", { buffer = buffer })
+      vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = buffer })
+      vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = buffer })
+      vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = buffer })
+      vim.keymap.set("n", "gr", vim.lsp.buf.references, { buffer = buffer })
+      vim.keymap.set("n", "ca", vim.lsp.buf.code_action, { buffer = buffer })
+      vim.keymap.set("n", "<space>gh", vim.lsp.buf.signature_help, { buffer = buffer })
 
       -- Use 'client.server_capabilities' for modern Neovim
       if client.server_capabilities.documentFormattingProvider then
@@ -99,7 +99,6 @@ return {
       end
     end
 
-
     local lspconfig = require("lspconfig")
 
     local installed = {
@@ -111,7 +110,7 @@ return {
       "nil",
       "racket_langserver",
       "clojure_lsp",
-      "eslint"
+      "eslint",
     }
 
     local function setup_servers()
@@ -122,17 +121,17 @@ return {
       end
     end
 
-    lspconfig.lua_ls.setup {
+    lspconfig.lua_ls.setup({
       on_attach = on_attach,
       settings = {
         Lua = {
           runtime = {
             -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-            version = 'LuaJIT',
+            version = "LuaJIT",
           },
           diagnostics = {
             -- Get the language server to recognize the `vim` global
-            globals = { 'vim' },
+            globals = { "vim" },
           },
           workspace = {
             -- Make the server aware of Neovim runtime files
@@ -145,8 +144,8 @@ return {
           },
         },
       },
-    }
+    })
 
     setup_servers()
-  end
+  end,
 }

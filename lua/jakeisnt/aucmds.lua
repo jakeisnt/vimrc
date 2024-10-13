@@ -49,7 +49,6 @@ vim.api.nvim_create_autocmd("FileType", {
   command = "setlocal formatoptions-=cro",
 })
 
-
 vim.api.nvim_create_autocmd({ "BufEnter" }, {
   group = authgroup,
   pattern = "*",
@@ -81,5 +80,5 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
 
       vim.fn.system(command)
     end
-  end
+  end,
 })
