@@ -49,7 +49,7 @@ check_internet_connection(function(has_internet)
   if has_internet then
     check_and_pull_upstream(function(commit_messages)
       -- print("Commit messages: " .. vim.inspect(commit_messages))
-      if true then
+      if commit_messages then
         vim.schedule(function()
           vim.ui.select({"Yes", "No"}, {
             prompt = "Neovim config update available. Reload config to apply?",
