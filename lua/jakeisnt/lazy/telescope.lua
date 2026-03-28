@@ -19,18 +19,18 @@ end
 
 return {
   "nvim-telescope/telescope.nvim",
-  tag = "0.1.6", -- or, branch = '0.1.x',
+  branch = "0.1.x",
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-telescope/telescope-ui-select.nvim",
   },
-  extensions = {
-    ["ui-select"] = { require("telescope.themes").get_dropdown({}) },
-  },
   config = function()
-    -- require("telescope").load_extension("projects")
+    require("telescope").setup({
+      extensions = {
+        ["ui-select"] = { require("telescope.themes").get_dropdown({}) },
+      },
+    })
     require("telescope").load_extension("ui-select")
-    require("telescope").setup({})
 
     local builtin = require("telescope.builtin")
     vim.keymap.set("n", "<leader>ff", M.project_files, {})

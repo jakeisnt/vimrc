@@ -4,44 +4,14 @@ return {
   dependencies = {
     "nvim-treesitter/nvim-treesitter-textobjects",
     "windwp/nvim-ts-autotag",
-    "nvim-treesitter/nvim-treesitter-refactor",
   },
   config = function()
-    local configs = require("nvim-treesitter.configs")
-
-    configs.setup({
+    require("nvim-treesitter.configs").setup({
       ensure_installed = "all",
       highlight = { enable = true },
       indent = { enable = true },
       autopairs = { enable = true },
-      rainbow = { enable = true },
-      refactor = {
-        navigation = {
-          enable = true,
-          keymaps = {
-            goto_definition = "gd",
-            list_definitions = "gD",
-          },
-        },
-        highlight_definitions = {
-          enable = true,
-          -- Set to false if you have an `updatetime` of ~100.
-          clear_on_cursor_move = true,
-        },
-        highlight_current_scope = { enable = true },
-        smart_rename = {
-          enable = true,
-          -- Assign keymaps to false to disable them, e.g. `smart_rename = false`.
-          keymaps = {
-            smart_rename = "grr",
-          },
-        },
-      },
     })
-
-    -- TODO: Define TextObject configuration:
-    -- https://github.com/nvim-treesitter/nvim-treesitter-textobjects
-    -- require('nvim-treesitter-textobjects').setup()
 
     require("nvim-ts-autotag").setup({
       opts = {

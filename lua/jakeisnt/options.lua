@@ -63,9 +63,6 @@ o.virtualedit = "block"
 o.iskeyword:append("-")
 o.smartindent = true
 
--- Performance
-o.lazyredraw = true
-
 -- Search
 o.inccommand = "nosplit" -- Show substitutions incrementally
 o.ignorecase = true

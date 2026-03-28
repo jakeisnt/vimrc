@@ -1,9 +1,3 @@
-return {
-  "numToStr/Comment.nvim",
-  opts = {
-    -- add any options here
-  },
-  config = function()
-    require("Comment").setup()
-  end,
-}
+-- Neovim 0.10+ has native gc/gcc commenting built in.
+-- No plugin needed.
+return {}
