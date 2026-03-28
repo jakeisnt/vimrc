@@ -2,3 +2,4 @@ theme.vim
 plugin/*
 
 .direnv/
+.DS_Store
