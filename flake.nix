@@ -1,28 +1,19 @@
 {
   description = "vimrc";
 
-  inputs = {
-    nixpkgs.url = "nixpkgs/nixos-unstable";
-    utils.url = "github:numtide/flake-utils";
+  inputs.nixpkgs.url = "nixpkgs/nixos-unstable";
 
-    # Used for shell.nix
-    flake-compat = {
-      url = github:edolstra/flake-compat;
-      flake = false;
+  outputs = { self, nixpkgs }:
+    let
+      systems = [ "x86_64-linux" "aarch64-darwin" ];
+      forAllSystems = nixpkgs.lib.genAttrs systems;
+    in {
+      devShells = forAllSystems (system:
+        let pkgs = nixpkgs.legacyPackages.${system}; in {
+          default = pkgs.mkShell {
+            name = "vimrc";
+            buildInputs = [ pkgs.stylua pkgs.lua-language-server ];
+          };
+        });
     };
-  };
-
-  outputs = { self, nixpkgs, utils, ... } @ inputs:
-    utils.lib.eachDefaultSystem (system:
-      let
-        inherit (lib) attrValues;
-        pkgs = import nixpkgs { inherit system; };
-        lib = pkgs.lib;
-
-      in rec {
-        devShell = with pkgs; mkShell {
-          name = "vimrc";
-          buildInputs = [ stylua luajit luajitPackages.lua-lsp lua-language-server ];
-        };
-      });
 }
