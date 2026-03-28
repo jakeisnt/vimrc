@@ -38,7 +38,6 @@ return {
     })
 
     local capabilities = require("blink.cmp").get_lsp_capabilities()
-    local lspconfig = require("lspconfig")
 
     local servers = {
       "clangd",
@@ -53,14 +52,15 @@ return {
     }
 
     for _, server in ipairs(servers) do
-      lspconfig[server].setup({
+      vim.lsp.config(server, {
         capabilities = capabilities,
-        root_dir = lspconfig.util.root_pattern({ ".git/", "." }),
+        root_markers = { ".git" },
       })
     end
 
-    lspconfig.lua_ls.setup({
+    vim.lsp.config("lua_ls", {
       capabilities = capabilities,
+      root_markers = { ".git" },
       settings = {
         Lua = {
           runtime = { version = "LuaJIT" },
@@ -73,5 +73,7 @@ return {
         },
       },
     })
+
+    vim.lsp.enable(vim.list_extend(vim.list_extend({}, servers), { "lua_ls" }))
   end,
 }

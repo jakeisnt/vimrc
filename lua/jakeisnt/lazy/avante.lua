@@ -6,11 +6,15 @@ return {
   opts = {
     provider = "claude",
     auto_suggestions_provider = "claude",
-    claude = {
-      endpoint = "https://api.anthropic.com",
-      model = "claude-sonnet-4-6",
-      temperature = 0,
-      max_tokens = 8192,
+    providers = {
+      claude = {
+        endpoint = "https://api.anthropic.com",
+        model = "claude-sonnet-4-6",
+        extra_request_body = {
+          temperature = 0,
+          max_tokens = 8192,
+        },
+      },
     },
   },
   -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
